@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="lg" x1="0" x2="1">
+      <stop offset="0" stop-color="#CFF6E9"/>
+      <stop offset="1" stop-color="#C2B0FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="url(#lg)"/>
+  <text x="50%" y="56%" text-anchor="middle" dominant-baseline="middle" font-family="Poppins, sans-serif" font-weight="700" font-size="46" fill="#092633">INC</text>
+</svg>

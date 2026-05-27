@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>InColor — Друк одягу та мерч на замовлення</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ─── SLIDING SOCIAL DRAWER ─── */
+    .social-trigger-wrap {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Кнопка-вкладка */
+    .social-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(45,174,230,0.2);
+      border-right: none;
+      border-radius: 10px 0 0 10px;
+      padding: 14px 10px;
+      cursor: pointer;
+      box-shadow: -4px 4px 18px rgba(45,174,230,0.15);
+      transition: background 0.25s, box-shadow 0.25s;
+      user-select: none;
+    }
+
+    .social-tab:hover {
+      background: rgba(235,248,255,0.98);
+      box-shadow: -6px 6px 25px rgba(45,174,230,0.25);
+    }
+
+    .social-tab-label {
+      font-family: "Poppins", sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #083d66;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+    }
+
+    .social-tab-arrow {
+      width: 14px;
+      height: 14px;
+      stroke: #2DAEE6;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.35s ease;
+    }
+
+    .social-trigger-wrap.open .social-tab-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Шторка */
+    .social-drawer {
+      position: fixed;
+      right: -240px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      width: 240px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(45,174,230,0.18);
+      border-right: none;
+      border-radius: 14px 0 0 14px;
+      box-shadow: -6px 6px 30px rgba(8,61,102,0.12);
+      padding: 24px 20px;
+      transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .social-drawer.open {
+      right: 0;
+    }
+
+    .drawer-heading {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #5f7085;
+      margin-bottom: 16px;
+    }
+
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .drawer-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #f0f9ff;
+      border: 1px solid rgba(45,174,230,0.12);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .drawer-link:hover {
+      background: #e2f4ff;
+      border-color: rgba(45,174,230,0.35);
+      transform: translateX(-3px);
+    }
+
+    .drawer-link-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(8,61,102,0.08);
+    }
+
+    .drawer-link-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      transition: stroke 0.2s;
+    }
+
+    .drawer-link.instagram .drawer-link-icon svg { stroke: #E1306C; }
+    .drawer-link.telegram .drawer-link-icon svg  { stroke: #0088cc; }
+    .drawer-link.viber .drawer-link-icon svg     { stroke: #7360f2; }
+
+    .drawer-link-info {}
+    .drawer-link-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #083d66;
+      display: block;
+    }
+    .drawer-link-handle {
+      font-size: 0.72rem;
+      color: #5f7085;
+    }
+
+    /* 📱 Мобільна позиція — знизу справа */
+    @media (max-width: 768px) {
+      .social-trigger-wrap {
+        top: auto;
+        bottom: 70px;
+        transform: none;
+      }
+      .social-drawer {
+        top: auto;
+        bottom: 70px;
+        transform: none;
+        right: -240px;
+      }
+      .social-drawer.open { right: 0; }
+    }
+
+    /* ─── МОБІЛЬНЕ МЕНЮ ─── */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+      z-index: 200;
+    }
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #083d66;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(240,249,255,0.97);
+      backdrop-filter: blur(12px);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #083d66;
+      text-decoration: none;
+    }
+    .mobile-nav a:hover { color: #2DAEE6; }
+
+    @media (max-width: 900px) {
+      .burger { display: flex; }
+    }
+
+    /* ─── ПАРТНЕРИ ─── */
+    .partners {
+      padding: 80px 6%;
+      background: #f8fbfc;
+      text-align: center;
+    }
+    .partners h2 {
+      font-size: 2rem;
+      color: #083d66;
+      margin-bottom: 10px;
+    }
+    .partners-subtitle {
+      color: #5f7085;
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+    .partners-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .partner-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(8,61,102,0.07);
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 200px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(45,174,230,0.1);
+    }
+    .partner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(45,174,230,0.18);
+    }
+    .partner-icon {
+      font-size: 2rem;
+    }
+    .partner-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #083d66;
+    }
+    .partner-desc {
+      font-size: 0.78rem;
+      color: #5f7085;
+    }
+
+    /* ─── FAQ ─── */
+    .faq {
+      padding: 80px 6%;
+      background: linear-gradient(180deg, #f9fbff, #eaf4ff);
+      text-align: center;
+    }
+    .faq h2 {
+      font-size: 2rem;
+      color: #083d66;
+      margin-bottom: 12px;
+    }
+    .faq-subtitle {
+      color: #5f7085;
+      margin-bottom: 48px;
+      font-size: 1rem;
+    }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .faq-item {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(8,61,102,0.06);
+      overflow: hidden;
+      border: 1px solid rgba(45,174,230,0.1);
+    }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #083d66;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .faq-question:hover { background: #f0f9ff; }
+    .faq-chevron {
+      width: 18px;
+      height: 18px;
+      stroke: #2DAEE6;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+      font-size: 0.9rem;
+      color: #5f7085;
+      line-height: 1.7;
+      padding: 0 22px;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 22px 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ ШАПКА ═══ -->
+  <header>
+    <a href="#hero" class="logo-row" style="text-decoration:none;">
+      <img src="logo.png" alt="InColor logo">
+      <div>
+        <div class="site-title">INC</div>
+        <div class="site-subtitle">InColor — Друк одягу</div>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#hero">Головна</a>
+      <a href="#offer">Про нас</a>
+      <a href="#examples">Каталог</a>
+      <a href="#services">Технології</a>
+      <a href="#contact">Контакти</a>
+      <a href="#partners">Партнери</a>
+    </nav>
+
+    <div class="contacts">
+      <div><a href="mailto:incolor.ra@gmail.com">incolor.ra@gmail.com</a></div>
+      <div><a href="tel:+380950173045">095 017 30 45</a></div>
+    </div>
+
+    <button class="burger" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- МОБІЛЬНЕ МЕНЮ -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#hero"     onclick="closeMobile()">Головна</a>
+    <a href="#offer"    onclick="closeMobile()">Про нас</a>
+    <a href="#examples" onclick="closeMobile()">Каталог</a>
+    <a href="#services" onclick="closeMobile()">Технології</a>
+    <a href="#contact"  onclick="closeMobile()">Контакти</a>
+    <a href="#partners" onclick="closeMobile()">Партнери</a>
+  </nav>
+
+  <main>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="hero" class="hero">
+      <div class="hero-grid-bg"></div>
+
+      <!-- Падаючі предмети -->
+      <div class="falling-items">
+        <img src="images/item-shirt.png"  alt="">
+        <img src="images/item-hoodie.png" alt="">
+        <img src="images/item-cup.png"    alt="">
+        <img src="images/item-bag.png"    alt="">
+        <img src="images/item-shirt.png"  alt="">
+        <img src="images/item-hoodie.png" alt="">
+        <img src="images/item-cup.png"    alt="">
+      </div>
+
+      <!-- Декоративні фігури (паралакс) -->
+      <div class="hero-decor">
+        <div class="shape circle1" data-speed="1.5"></div>
+        <div class="shape circle2" data-speed="1.2"></div>
+        <div class="shape triangle" data-speed="0.9"></div>
+      </div>
+
+      <!-- Текст -->
+      <div class="hero-left">
+        <h1>InColor — друк одягу<br>саме для тебе</h1>
+        <p>Створюємо футболки, худі, кружки та сумки. Якісні матеріали, сучасний друк і стильний дизайн.</p>
+        <div class="cta">
+          <a href="https://t.me/Incolor_manager" target="_blank" class="telegram-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="telegram-icon">
+              <path d="M9.04 15.23l-.39 5.48c.56 0 .8-.24 1.09-.53l2.61-2.49 5.41 3.95c.99.55 1.7.26 1.95-.92l3.53-16.55v-.01c.32-1.48-.54-2.06-1.5-1.7L1.6 9.4C.15 9.98.16 10.84 1.34 11.2l5.3 1.65L18.85 5.3c.57-.37 1.09-.17.66.2"/>
+            </svg>
+            Написати в Telegram
+          </a>
+        </div>
+      </div>
+
+      <!-- Колаж -->
+      <div class="collage">
+        <img src="images/work3.jpg" alt="Футболка InColor">
+        <img src="images/work2.jpg" alt="Сумка InColor">
+        <img src="images/work1.jpg" alt="Аксесуари InColor">
+      </div>
+    </section>
+
+    <!-- ═══ ПРО НАС ═══ -->
+    <section id="offer" class="offer" data-aos="fade-up">
+      <h2 data-aos="fade-up" data-aos-delay="100">Що ми пропонуємо</h2>
+
+      <div class="offer-row">
+        <div class="offer-box text-box" data-aos="fade-right" data-aos-delay="200">
+          <h3>Індивідуальний мерч</h3>
+          <p>
+            Ми створюємо стильні футболки, худі, кружки та сумки на замовлення.
+            Використовуємо якісні матеріали, сучасні технології друку
+            та допомагаємо втілити будь-яку ідею.
+          </p>
+        </div>
+        <div class="offer-box image-box" data-aos="fade-left" data-aos-delay="300">
+          <img src="images/work4.jpg" alt="Продукція InColor">
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ МЕРЧу в реальному житті ═══ -->
+    <section id="merch" class="merch-section" data-aos="fade-up">
+      <div class="merch-cloud">
+        <div class="merch-photo left" data-aos="fade-right" data-aos-delay="100">
+          <img src="images/Aura.png" alt="Мерч Aura">
+        </div>
+        <div class="merch-text" data-aos="zoom-in" data-aos-delay="250">
+          <h2>Наш мерч у реальному житті</h2>
+          <p>
+            Ми створюємо речі, які хочеться носити щодня.<br>
+            Кожен виріб — це поєднання якості, стилю і твоєї індивідуальності.
+          </p>
+        </div>
+        <div class="merch-photo right" data-aos="fade-left" data-aos-delay="400">
+          <img src="images/DNA.png" alt="Футболка DNA">
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ КАТАЛОГ ═══ -->
+    <section id="examples" class="examples" data-aos="fade-up">
+      <h2 data-aos="fade-up" data-aos-delay="100">Наші Вироби</h2>
+      <div class="card-grid">
+        <div class="card" data-aos="zoom-in" data-aos-delay="200">
+          <img src="images/work3.jpg" alt="Футболки">
+          <h3>Футболки</h3>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="300">
+          <img src="images/work4.jpg" alt="Худі">
+          <h3>Худі</h3>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="400">
+          <img src="images/work1.jpg" alt="Кружки">
+          <h3>Кружки</h3>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="500">
+          <img src="images/work2.jpg" alt="Сумки">
+          <h3>Сумки</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ТЕХНОЛОГІЇ ДРУКУ ═══ -->
+    <section id="services" class="services" data-aos="fade-up">
+      <h2 data-aos="fade-up" data-aos-delay="100">Технології друку</h2>
+      <p class="services-subtitle" data-aos="fade-up" data-aos-delay="200">
+        Ми використовуємо сучасні методи, щоб кожен виріб виглядав ідеально
+      </p>
+      <div class="services-grid">
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+          <img src="images/dtf.jpg" alt="DTF друк">
+          <h3>DTF друк</h3>
+          <p>Стійкий до прання друк на будь-яких тканинах. Ідеальний для дрібних деталей і яскравих кольорів.</p>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+          <img src="images/dtg.jpg" alt="DTG друк">
+          <h3>DTG друк</h3>
+          <p>Прямий друк на тканині — насичені кольори, висока якість і приємна на дотик поверхня.</p>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+          <img src="images/termotransfer.jpg" alt="Термотрансфер">
+          <h3>Термотрансфер</h3>
+          <p>Технологія перенесення зображення на виріб під температурою. Підходить для логотипів і написів.</p>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
+          <img src="images/sublimation.jpg" alt="Сублімація">
+          <h3>Сублімація</h3>
+          <p>Ідеальна для поліестеру та аксесуарів. Зображення не стирається й зберігає кольори роками.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ЕТАПИ ВИРОБНИЦТВА ═══ -->
+<section class="production">
+  <div class="production-bg"></div>
+
+  <div class="production-header" data-aos="fade-up">
+    <span class="production-label">Як це працює</span>
+    <h2>Етапи виробництва</h2>
+    <p>
+      Від першого повідомлення до готового мерчу —
+      ми контролюємо кожен етап виробництва.
+    </p>
+  </div>
+
+  <div class="production-grid">
+
+    <div class="production-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="step-number">01</div>
+
+      <div class="step-icon">
+        ✍️
+      </div>
+
+      <h3>Заявка</h3>
+
+      <p>
+        Ви залишаєте заявку або пишете нам у Telegram.
+      </p>
+    </div>
+
+    <div class="production-line"></div>
+
+    <div class="production-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="step-number">02</div>
+
+      <div class="step-icon">
+        🎨
+      </div>
+
+      <h3>Дизайн</h3>
+
+      <p>
+        Створюємо або адаптуємо макет під друк.
+      </p>
+    </div>
+
+    <div class="production-line"></div>
+
+    <div class="production-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="step-number">03</div>
+
+      <div class="step-icon">
+        🖨️
+      </div>
+
+      <h3>Друк</h3>
+
+      <p>
+        Підбираємо технологію та запускаємо виробництво.
+      </p>
+    </div>
+
+    <div class="production-line"></div>
+
+    <div class="production-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="step-number">04</div>
+
+      <div class="step-icon">
+        🔍
+      </div>
+
+      <h3>Перевірка</h3>
+
+      <p>
+        Контролюємо якість кожного виробу перед відправкою.
+      </p>
+    </div>
+
+    <div class="production-line"></div>
+
+    <div class="production-card" data-aos="fade-up" data-aos-delay="500">
+      <div class="step-number">05</div>
+
+      <div class="step-icon">
+        📦
+      </div>
+
+      <h3>Доставка</h3>
+
+      <p>
+        Відправляємо ваше замовлення по всій Україні.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+    <!-- ═══ ПАРТНЕРИ ═══ -->
+    <section id="partners" class="partners" data-aos="fade-up">
+      <h2 data-aos="fade-up" data-aos-delay="100">Наші партнери</h2>
+      <p class="partners-subtitle" data-aos="fade-up" data-aos-delay="180">Ми співпрацюємо з командами, які цінують якість</p>
+      <div class="partners-grid">
+        <div class="partner-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="partner-icon">🏋️</div>
+          <div>
+            <div class="partner-name">Aura Gym</div>
+            <div class="partner-desc">Спортивний одяг та мерч</div>
+          </div>
+        </div>
+        <div class="partner-card" data-aos="fade-up" data-aos-delay="280">
+          <div class="partner-icon">🧬</div>
+          <div>
+            <div class="partner-name">DNA Studio</div>
+            <div class="partner-desc">Корпоративна форма</div>
+          </div>
+        </div>
+        <div class="partner-card" data-aos="fade-up" data-aos-delay="360">
+          <div class="partner-icon">🎓</div>
+          <div>
+            <div class="partner-name">КНУ</div>
+            <div class="partner-desc">Університетський мерч</div>
+          </div>
+        </div>
+        <div class="partner-card" data-aos="fade-up" data-aos-delay="440">
+          <div class="partner-icon">🎮</div>
+          <div>
+            <div class="partner-name">GameZone</div>
+            <div class="partner-desc">Ігровий мерч та подарунки</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq" data-aos="fade-up">
+      <h2>Часті запитання</h2>
+      <p class="faq-subtitle">Усе, що ти хотів знати про замовлення</p>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Яка мінімальна кількість для замовлення?
+            <svg class="faq-chevron" viewBox="0 0 16 16"><polyline points="3,6 8,11 13,6"/></svg>
+          </div>
+          <div class="faq-answer">Мінімальне замовлення — від 1 штуки для більшості видів друку. Для корпоративних партій від 10+ одиниць діють знижки.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Скільки часу займає виготовлення?
+            <svg class="faq-chevron" viewBox="0 0 16 16"><polyline points="3,6 8,11 13,6"/></svg>
+          </div>
+          <div class="faq-answer">Стандартний термін — 3–7 робочих днів. Термінове замовлення (1–2 дні) можливе за доплату. Велика партія — уточнюйте індивідуально.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Чи допоможете з дизайном, якщо у мене немає макету?
+            <svg class="faq-chevron" viewBox="0 0 16 16"><polyline points="3,6 8,11 13,6"/></svg>
+          </div>
+          <div class="faq-answer">Так! Наш дизайнер розробить макет за твоїм описом або ескізом. Послуга включена у вартість замовлення від 5 одиниць, або оплачується окремо.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Яка доставка по Україні?
+            <svg class="faq-chevron" viewBox="0 0 16 16"><polyline points="3,6 8,11 13,6"/></svg>
+          </div>
+          <div class="faq-answer">Відправляємо Новою Поштою та Укрпоштою по всій Україні. Самовивіз з Харкова — безкоштовно. Вартість доставки за тарифами перевізника.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Чи можна замовити зразок перед великою партією?
+            <svg class="faq-chevron" viewBox="0 0 16 16"><polyline points="3,6 8,11 13,6"/></svg>
+          </div>
+          <div class="faq-answer">Так, ми виготовляємо тестовий зразок за повною ціною. При подальшому замовленні партії вартість зразка зараховується.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ ФОРМА ЗВ'ЯЗКУ ═══ -->
+    <section id="contact" class="contact-section" data-aos="fade-up">
+      <h2 data-aos="fade-down" data-aos-delay="100">Залиш заявку</h2>
+      <p data-aos="fade-up" data-aos-delay="200">Ми зв'яжемось із тобою протягом дня 💬</p>
+
+      <form id="contactForm"
+            action="https://formspree.io/f/xovkwrnb"
+            method="POST"
+            data-aos="zoom-in"
+            data-aos-delay="300">
+
+        <div class="form-group" data-aos="fade-right" data-aos-delay="400">
+          <input type="text" name="name" placeholder="Ваше ім'я" required>
+        </div>
+        <div class="form-group" data-aos="fade-right" data-aos-delay="450">
+          <input type="tel" name="phone" placeholder="Ваш номер телефону" required>
+        </div>
+        <div class="form-group" data-aos="fade-left" data-aos-delay="500">
+          <input type="email" name="email" placeholder="Ваш Email" required>
+        </div>
+        <div class="form-group" data-aos="fade-up" data-aos-delay="600">
+          <textarea name="message" placeholder="Ваше повідомлення" rows="4" required></textarea>
+        </div>
+        <button type="submit" data-aos="zoom-in" data-aos-delay="700">Надіслати</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ═══ ФУТЕР ═══ -->
+  <footer id="contacts">
+    <p>Напиши нам: <a href="mailto:incolor.ra@gmail.com">incolor.ra@gmail.com</a> • <a href="tel:+380950173045">095 017 30 45</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/inco_tshrt/" target="_blank">@inco_tshrt</a> •
+       Telegram: <a href="https://t.me/Incolor_manager" target="_blank">Incolor_manager</a></p>
+    <p style="margin-top:8px;color:var(--muted)">© InColor 2025</p>
+  </footer>
+
+  <!-- ═══ СОЦІАЛЬНА ШТОРКА ═══ -->
+  <div class="social-trigger-wrap" id="socialTriggerWrap">
+    <button class="social-tab" id="socialTabBtn" onclick="toggleDrawer()" aria-label="Соцмережі">
+      <span class="social-tab-label">Зв'язок</span>
+      <svg class="social-tab-arrow" viewBox="0 0 16 16"><polyline points="10,3 5,8 10,13"/></svg>
+    </button>
+  </div>
+
+  <div class="social-drawer" id="socialDrawer">
+    <div class="drawer-heading">Ми в соцмережах</div>
+    <div class="drawer-links">
+
+      <a href="https://www.instagram.com/inco_tshrt/" target="_blank" class="drawer-link instagram">
+        <div class="drawer-link-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="3.5"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" style="fill:#E1306C;stroke:none;"/>
+          </svg>
+        </div>
+        <div class="drawer-link-info">
+          <span class="drawer-link-name">Instagram</span>
+          <span class="drawer-link-handle">@inco_tshrt</span>
+        </div>
+      </a>
+
+      <a href="https://t.me/Incolor_manager" target="_blank" class="drawer-link telegram">
+        <div class="drawer-link-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 2L11 13"/>
+            <polygon points="22 2 15 22 11 13 2 9"/>
+          </svg>
+        </div>
+        <div class="drawer-link-info">
+          <span class="drawer-link-name">Telegram</span>
+          <span class="drawer-link-handle">Incolor_manager</span>
+        </div>
+      </a>
+
+      <a href="viber://chat?number=%2B380950173045" target="_blank" class="drawer-link viber">
+        <div class="drawer-link-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 2H6a4 4 0 0 0-4 4v12a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4z"/>
+            <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+          </svg>
+        </div>
+        <div class="drawer-link-info">
+          <span class="drawer-link-name">Viber</span>
+          <span class="drawer-link-handle">095 017 30 45</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ═══ СКРИПТИ ═══ -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // AOS
+    AOS.init({ duration: 900, once: true, offset: 100, easing: 'ease-out-back' });
+
+    // ─── Соціальна шторка ───
+    let drawerOpen = false;
+    const drawer   = document.getElementById('socialDrawer');
+    const triggerW = document.getElementById('socialTriggerWrap');
+
+    function toggleDrawer() {
+      drawerOpen = !drawerOpen;
+      drawer.classList.toggle('open', drawerOpen);
+      triggerW.classList.toggle('open', drawerOpen);
+    }
+
+    document.addEventListener('click', (e) => {
+      if (drawerOpen && !triggerW.contains(e.target) && !drawer.contains(e.target)) {
+        drawerOpen = false;
+        drawer.classList.remove('open');
+        triggerW.classList.remove('open');
+      }
+    });
+
+    // ─── Мобільне меню ───
+    const burgerBtn  = document.getElementById('burgerBtn');
+    const mobileNav  = document.getElementById('mobileNav');
+
+    burgerBtn.addEventListener('click', () => {
+      burgerBtn.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    function closeMobile() {
+      burgerBtn.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ─── Паралакс ───
+    document.addEventListener('mousemove', (e) => {
+      document.querySelectorAll('.shape').forEach((shape) => {
+        const speed = shape.getAttribute('data-speed') || 1;
+        const x = (window.innerWidth  - e.pageX * speed) / 150;
+        const y = (window.innerHeight - e.pageY * speed) / 150;
+        shape.style.transform = `translate(${x}px, ${y}px) rotate(${x / 2}deg)`;
+      });
+    });
+
+    // ─── Падаючі предмети ───
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.falling-items img').forEach((item) => {
+        item.style.left             = Math.random() * 100 + '%';
+        item.style.width            = (60 + Math.random() * 40) + 'px';
+        item.style.animationDelay   = Math.random() * 10 + 's';
+        item.style.animationDuration = (12 + Math.random() * 10) + 's';
+        item.style.opacity          = (0.15 + Math.random() * 0.25).toString();
+      });
+
+      // ─── Орбіта ───
+      const steps = document.querySelectorAll('.orbit-step');
+      let idx = 0;
+      setInterval(() => {
+        steps.forEach(s => s.classList.remove('active'));
+        steps[idx].classList.add('active');
+        idx = (idx + 1) % steps.length;
+      }, 2500);
+    });
+
+    // ─── FAQ акордеон ───
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ─── Форма → Telegram + Formspree ───
+    const BOT_TOKEN = "8124303621:AAHXIkPoPOAVXaY1HxqwpbJspMAzEMv8pBI";
+    const CHAT_ID   = "651384326";
+
+    document.querySelector('#contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      const msg = `📩 *Нова заявка з сайту InColor:*\n👤 Ім'я: ${data.get('name')}\n📞 Телефон: ${data.get('phone')}\n📧 Email: ${data.get('email')}\n💬 Повідомлення: ${data.get('message')}`;
+
+      try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
+        });
+        await fetch(form.action, {
+          method: 'POST', body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        alert('✅ Заявку надіслано! Ми скоро з вами зв\'яжемось 💬');
+        form.reset();
+      } catch {
+        alert('❌ Помилка надсилання. Спробуйте пізніше.');
+      }
+    });
+  </script>
+
+</body>
+</html>
