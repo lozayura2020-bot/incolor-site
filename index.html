@@ -426,48 +426,78 @@
     <section id="hero" class="hero">
       <div class="hero-grid-bg"></div>
 
-      <!-- Падаючі предмети -->
-      <div class="falling-items">
-        <img src="images/item-shirt.png"  alt="">
+      <div class="falling-items" aria-hidden="true">
+        <img src="images/item-shirt.png" alt="">
         <img src="images/item-hoodie.png" alt="">
-        <img src="images/item-cup.png"    alt="">
-        <img src="images/item-bag.png"    alt="">
-        <img src="images/item-shirt.png"  alt="">
-        <img src="images/item-hoodie.png" alt="">
-        <img src="images/item-cup.png"    alt="">
+        <img src="images/item-cup.png" alt="">
+        <img src="images/item-bag.png" alt="">
       </div>
 
-      <!-- Декоративні фігури (паралакс) -->
-      <div class="hero-decor">
+      <div class="hero-decor" aria-hidden="true">
         <div class="shape circle1" data-speed="1.5"></div>
         <div class="shape circle2" data-speed="1.2"></div>
         <div class="shape triangle" data-speed="0.9"></div>
       </div>
 
-      <!-- Текст -->
       <div class="hero-left">
-        <h1>InColor — друк одягу<br>саме для тебе</h1>
-        <p>Створюємо футболки, худі, кружки та сумки. Якісні матеріали, сучасний друк і стильний дизайн.</p>
-        <div class="cta">
-          <a href="https://t.me/Incolor_manager" target="_blank" class="telegram-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="telegram-icon">
+        <span class="hero-kicker">ДРУК • МЕРЧ • ДИЗАЙН</span>
+        <h1>Мерч, який<br>хочеться носити.</h1>
+        <p>
+          Створюємо футболки, худі, сумки, кружки та брендований одяг
+          від однієї речі до командних партій. Допоможемо з макетом,
+          підберемо технологію друку та доведемо ідею до готового виробу.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://t.me/Incolor_manager" target="_blank" class="hero-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9.04 15.23l-.39 5.48c.56 0 .8-.24 1.09-.53l2.61-2.49 5.41 3.95c.99.55 1.7.26 1.95-.92l3.53-16.55v-.01c.32-1.48-.54-2.06-1.5-1.7L1.6 9.4C.15 9.98.16 10.84 1.34 11.2l5.3 1.65L18.85 5.3c.57-.37 1.09-.17.66.2"/>
             </svg>
-            Написати в Telegram
+            Створити мерч
           </a>
+
+          <a href="#examples" class="hero-secondary">
+            Дивитися роботи
+            <span>↘</span>
+          </a>
+        </div>
+
+        <div class="hero-note">
+          <span></span>
+          Від 1 шт. • Доставка по Україні
         </div>
       </div>
 
-      <!-- Колаж -->
-      <div class="collage">
-        <img src="images/work3.jpg" alt="Футболка InColor">
-        <img src="images/work2.jpg" alt="Сумка InColor">
-        <img src="images/work1.jpg" alt="Аксесуари InColor">
+      <div class="collage" aria-label="Приклади продукції InColor">
+        <img src="images/work3.jpg" alt="Футболка з друком">
+        <img src="images/work2.jpg" alt="Брендована сумка">
+        <img src="images/work1.jpg" alt="Друк на аксесуарах">
+      </div>
+    </section>
+
+    <!-- ═══ ПЕРЕВАГИ ═══ -->
+    <section class="trust-strip" aria-label="Переваги InColor">
+      <div class="trust-item">
+        <strong>1+</strong>
+        <span>від однієї речі</span>
+      </div>
+      <div class="trust-item">
+        <strong>4</strong>
+        <span>технології друку</span>
+      </div>
+      <div class="trust-item">
+        <strong>3–7</strong>
+        <span>робочих днів</span>
+      </div>
+      <div class="trust-item">
+        <strong>UA</strong>
+        <span>доставка по Україні</span>
       </div>
     </section>
 
     <!-- ═══ ПРО НАС ═══ -->
     <section id="offer" class="offer" data-aos="fade-up">
+      <span class="section-kicker">ЩО МИ РОБИМО</span>
       <h2 data-aos="fade-up" data-aos-delay="100">Що ми пропонуємо</h2>
 
       <div class="offer-row">
@@ -506,6 +536,7 @@
 
     <!-- ═══ КАТАЛОГ ═══ -->
     <section id="examples" class="examples" data-aos="fade-up">
+      <span class="section-kicker">ВИБРАНІ РОБОТИ</span>
       <h2 data-aos="fade-up" data-aos-delay="100">Наші Вироби</h2>
       <div class="card-grid">
         <div class="card" data-aos="zoom-in" data-aos-delay="200">
@@ -527,8 +558,47 @@
       </div>
     </section>
 
+    <!-- ═══ ІДЕЇ ДЛЯ МЕРЧУ ═══ -->
+    <section class="showcase" data-aos="fade-up">
+      <div class="showcase-heading">
+        <span class="section-kicker">НЕ ТІЛЬКИ ФУТБОЛКИ</span>
+        <h2>Один стиль.<br>Різні носії.</h2>
+        <p>
+          Побудуємо цілісний набір мерчу для бренду, команди,
+          події або подарунка — з одним візуальним характером.
+        </p>
+      </div>
+
+      <div class="showcase-grid">
+        <article class="showcase-card showcase-card-wide">
+          <img src="images/work4.jpg" alt="Брендований одяг">
+          <div class="showcase-overlay">
+            <span>APPAREL</span>
+            <h3>Футболки та худі</h3>
+          </div>
+        </article>
+
+        <article class="showcase-card">
+          <img src="images/work2.jpg" alt="Брендовані сумки">
+          <div class="showcase-overlay">
+            <span>ACCESSORIES</span>
+            <h3>Шопери та сумки</h3>
+          </div>
+        </article>
+
+        <article class="showcase-card">
+          <img src="images/work1.jpg" alt="Брендовані аксесуари">
+          <div class="showcase-overlay">
+            <span>DETAILS</span>
+            <h3>Кружки й аксесуари</h3>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- ═══ ТЕХНОЛОГІЇ ДРУКУ ═══ -->
     <section id="services" class="services" data-aos="fade-up">
+      <span class="section-kicker">ТЕХНОЛОГІЇ</span>
       <h2 data-aos="fade-up" data-aos-delay="100">Технології друку</h2>
       <p class="services-subtitle" data-aos="fade-up" data-aos-delay="200">
         Ми використовуємо сучасні методи, щоб кожен виріб виглядав ідеально
@@ -655,6 +725,7 @@
 
     <!-- ═══ ПАРТНЕРИ ═══ -->
     <section id="partners" class="partners" data-aos="fade-up">
+      <span class="section-kicker">НАМ ДОВІРЯЮТЬ</span>
       <h2 data-aos="fade-up" data-aos-delay="100">Наші партнери</h2>
       <p class="partners-subtitle" data-aos="fade-up" data-aos-delay="180">Ми співпрацюємо з командами, які цінують якість</p>
       <div class="partners-grid">
@@ -691,6 +762,7 @@
 
     <!-- ═══ FAQ ═══ -->
     <section class="faq" data-aos="fade-up">
+      <span class="section-kicker">FAQ</span>
       <h2>Часті запитання</h2>
       <p class="faq-subtitle">Усе, що ти хотів знати про замовлення</p>
       <div class="faq-list">
@@ -738,8 +810,23 @@
       </div>
     </section>
 
+    <!-- ═══ ВЕЛИКИЙ CTA ═══ -->
+    <section class="big-cta" data-aos="fade-up">
+      <div class="big-cta-inner">
+        <div>
+          <span class="section-kicker section-kicker-light">Є ІДЕЯ?</span>
+          <h2>Перетворимо її<br>на реальний мерч.</h2>
+        </div>
+        <a href="https://t.me/Incolor_manager" target="_blank">
+          Написати в Telegram
+          <span>↗</span>
+        </a>
+      </div>
+    </section>
+
     <!-- ═══ ФОРМА ЗВ'ЯЗКУ ═══ -->
     <section id="contact" class="contact-section" data-aos="fade-up">
+      <span class="section-kicker">ГОТОВІ ПОЧАТИ?</span>
       <h2 data-aos="fade-down" data-aos-delay="100">Залиш заявку</h2>
       <p data-aos="fade-up" data-aos-delay="200">Ми зв'яжемось із тобою протягом дня 💬</p>
 
@@ -769,10 +856,19 @@
 
   <!-- ═══ ФУТЕР ═══ -->
   <footer id="contacts">
-    <p>Напиши нам: <a href="mailto:incolor.ra@gmail.com">incolor.ra@gmail.com</a> • <a href="tel:+380950173045">095 017 30 45</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/inco_tshrt/" target="_blank">@inco_tshrt</a> •
-       Telegram: <a href="https://t.me/Incolor_manager" target="_blank">Incolor_manager</a></p>
-    <p style="margin-top:8px;color:var(--muted)">© InColor 2025</p>
+    <div class="footer-brand">
+      <div class="brand-name">INC<span>O</span>LOR</div>
+      <div class="brand-subtitle">PRINT STUDIO</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="mailto:incolor.ra@gmail.com">incolor.ra@gmail.com</a>
+      <a href="tel:+380950173045">095 017 30 45</a>
+      <a href="https://www.instagram.com/inco_tshrt/" target="_blank">Instagram</a>
+      <a href="https://t.me/Incolor_manager" target="_blank">Telegram</a>
+    </div>
+
+    <p class="footer-copy">© InColor 2026 • Друк одягу та мерч</p>
   </footer>
 
   <!-- ═══ СОЦІАЛЬНА ШТОРКА ═══ -->
@@ -936,18 +1032,6 @@
         alert('❌ Помилка надсилання. Спробуйте пізніше.');
       }
     });
-    // ═══ HEADER SCROLL EFFECT ═══
-    const siteHeader = document.getElementById('siteHeader');
-
-    window.addEventListener('scroll', () => {
-      if (!siteHeader) return;
-      if (window.scrollY > 60) {
-        siteHeader.classList.add('scrolled');
-      } else {
-        siteHeader.classList.remove('scrolled');
-      }
-    }, { passive: true });
-
   </script>
 
 </body>
