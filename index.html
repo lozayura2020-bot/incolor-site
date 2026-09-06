@@ -534,72 +534,93 @@
       </div>
     </section>
 
-    <!-- ═══ ПРО НАС ═══ -->
-    <section id="offer" class="offer-premium section-wave" data-aos="fade-up">
-      <div class="offer-premium-header">
-        <span class="offer-premium-side-label">CUSTOM PRINT STUDIO</span>
+    <!-- ═══ ПРО НАС — ЄДИНИЙ PREMIUM-БЛОК ═══ -->
+    <section id="offer" class="about-flow section-wave" data-aos="fade-up">
+
+      <div class="about-flow-head">
         <span class="section-kicker">01 / ABOUT</span>
-        <span class="offer-premium-script">Good ideas<br>look better on you.</span>
+        <h2>Ідея → річ,<br>яку хочеться носити</h2>
       </div>
 
-      <h2 data-aos="fade-up" data-aos-delay="80">Ідея → річ,<br>яку хочеться носити</h2>
+      <div class="about-flow-panel">
 
-      <div class="offer-premium-shell" data-aos="fade-up" data-aos-delay="160">
-        <div class="offer-premium-copy">
-          <span class="offer-premium-mini">БІЛЬШЕ, НІЖ ДРУК</span>
+        <div class="about-flow-copy" data-aos="fade-right" data-aos-delay="120">
+          <span class="about-flow-label">БІЛЬШЕ, НІЖ ДРУК</span>
 
           <h3>Мерч без<br>шаблонного<br>підходу</h3>
 
           <p>
-            Допомагаємо з макетом, підбираємо матеріали та технологію друку —
+            Допомагаємо з макетом, підбираємо матеріал і технологію друку —
             щоб результат виглядав цілісно, а не просто «логотипом на речі».
           </p>
 
-          <div class="offer-premium-features">
-            <div class="offer-chip">
-              <span class="offer-chip-icon">✎</span>
+          <div class="about-flow-points">
+            <div class="about-flow-point">
+              <span class="about-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 20h4l11-11-4-4L4 16v4Z"/>
+                  <path d="m13.5 6.5 4 4"/>
+                </svg>
+              </span>
               <span>Допомагаємо<br>з макетом</span>
             </div>
-            <div class="offer-chip">
-              <span class="offer-chip-icon">◫</span>
+
+            <div class="about-flow-point">
+              <span class="about-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m12 3 8 4-8 4-8-4 8-4Z"/>
+                  <path d="m4 12 8 4 8-4"/>
+                  <path d="m4 17 8 4 8-4"/>
+                </svg>
+              </span>
               <span>Підбираємо<br>матеріали</span>
             </div>
-            <div class="offer-chip">
-              <span class="offer-chip-icon">◌</span>
+
+            <div class="about-flow-point">
+              <span class="about-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 8V4h10v4"/>
+                  <path d="M6 17H4V9h16v8h-2"/>
+                  <path d="M7 14h10v6H7z"/>
+                </svg>
+              </span>
               <span>Друкуємо<br>сучасною DTF</span>
             </div>
           </div>
 
-          <div class="offer-premium-actions">
-            <a href="#contact" class="offer-premium-button">
+          <div class="about-flow-actions">
+            <a href="#contact" class="about-flow-primary">
               <span>Обговорити ідею</span>
               <b>→</b>
             </a>
-
-            <a href="#services" class="offer-premium-link">Дізнатися більше</a>
+            <a href="#services" class="about-flow-secondary">Дізнатися більше</a>
           </div>
         </div>
 
-        <div class="offer-premium-media">
-          <div class="offer-premium-blob blob-a"></div>
-          <div class="offer-premium-blob blob-b"></div>
+        <div class="about-flow-visual" data-aos="fade-left" data-aos-delay="180">
+          <img
+            src="images/work4.jpg"
+            alt="Худі з принтом InColor"
+            onerror="this.onerror=null;this.src='images/DNA.png';"
+          >
 
-          <img src="images/work4.jpg" alt="Худі з DTF принтом">
-
-          <div class="offer-premium-badge">
+          <div class="about-flow-dtf">
             <strong>DTF / A3</strong>
-            <small>до 297 × 420 мм</small>
+            <span>до 297 × 420 мм</span>
           </div>
 
-          <div class="offer-premium-arrow">↩</div>
+          <div class="about-flow-arrow" aria-hidden="true">↙</div>
 
-          <div class="offer-premium-vertical">
+          <div class="about-flow-words" aria-hidden="true">
             <span>IDEAS</span>
             <span>PRINTS</span>
             <span>PEOPLE</span>
             <span>TOGETHER</span>
           </div>
         </div>
+
+        <div class="about-flow-orb orb-one" aria-hidden="true"></div>
+        <div class="about-flow-orb orb-two" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -1190,86 +1211,17 @@
 
     document.querySelector('#contactForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const form = e.target;
-      const submitBtn = form.querySelector('button[type="submit"]');
       const data = new FormData(form);
 
-      const msg =
-        `📩 Нова заявка з сайту InColor
-
-` +
-        `👤 Ім'я: ${data.get('name')}
-` +
-        `📞 Телефон: ${data.get('phone')}
-` +
-        `📧 Email: ${data.get('email')}
-` +
-        `💬 Повідомлення: ${data.get('message')}`;
-
-      const oldButtonHtml = submitBtn ? submitBtn.innerHTML : '';
+      const msg = `📩 *Нова заявка з сайту InColor:*\n👤 Ім'я: ${data.get('name')}\n📞 Телефон: ${data.get('phone')}\n📧 Email: ${data.get('email')}\n💬 Повідомлення: ${data.get('message')}`;
 
       try {
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = '<span>Відправляємо…</span>';
-        }
-
-        const tgResponse = await fetch(
-          `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: CHAT_ID,
-              text: msg
-            })
-          }
-        );
-
-        const tgResult = await tgResponse.json();
-
-        if (!tgResponse.ok || !tgResult.ok) {
-          throw new Error(
-            tgResult.description || `Telegram HTTP ${tgResponse.status}`
-          );
-        }
-
-        // Formspree remains as a backup copy of the request.
-        if (form.action) {
-          try {
-            await fetch(form.action, {
-              method: 'POST',
-              body: data,
-              headers: { 'Accept': 'application/json' }
-            });
-          } catch (backupError) {
-            console.warn('Formspree backup failed:', backupError);
-          }
-        }
-
-        alert('✅ Заявку надіслано в Telegram!');
-        form.reset();
-
-      } catch (error) {
-        console.error('Telegram send error:', error);
-
-        alert(
-          '❌ Telegram не прийняв заявку.
-
-' +
-          'Причина: ' + error.message + '
-
-' +
-          'Переконайся, що ти відкрив @InColorSale_bot і натиснув Start / відправив /start.'
-        );
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = oldButtonHtml;
-        }
-      }
-    });
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
+        });
         await fetch(form.action, {
           method: 'POST', body: data,
           headers: { 'Accept': 'application/json' }
@@ -1284,7 +1236,7 @@
     (() => {
       // Text/card reveal
       const revealTargets = document.querySelectorAll(
-        '.section-kicker, .hero-kicker, section h2, .offer-premium-shell, .offer-chip, .merch-photo, .merch-text, ' +
+        '.section-kicker, .hero-kicker, section h2, .offer-box, .merch-photo, .merch-text, ' +
         '.work-card, .showcase-card, .service-card, .production-card, .partner-card, ' +
         '.faq-item, #contactForm, .trust-item, .big-cta-inner'
       );
