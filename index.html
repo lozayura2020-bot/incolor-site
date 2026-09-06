@@ -7,6 +7,7 @@
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   <link rel="stylesheet" href="style.css">
 
@@ -441,7 +442,7 @@
 
       <div class="hero-left">
         <span class="hero-kicker">ДРУК • МЕРЧ • ДИЗАЙН</span>
-        <h1>Мерч, який<br>хочеться носити.</h1>
+        <h1>Мерч, який<br><span class="hero-accent">хочеться носити.</span></h1>
         <p>
           Створюємо футболки, худі, сумки, кружки та брендований одяг
           від однієї речі до командних партій. Допоможемо з макетом,
@@ -468,10 +469,24 @@
         </div>
       </div>
 
-      <div class="collage" aria-label="Приклади продукції InColor">
+      <div class="collage hero-visual" aria-label="Приклади продукції InColor">
         <img src="images/work3.jpg" alt="Футболка з друком">
         <img src="images/work2.jpg" alt="Брендована сумка">
         <img src="images/work1.jpg" alt="Друк на аксесуарах">
+
+        <div class="hero-float-card hero-float-card-top">
+          <span class="hero-float-label">СТАРТ</span>
+          <strong>Від 1 шт.</strong>
+          <small>без великої партії</small>
+        </div>
+
+        <div class="hero-float-card hero-float-card-bottom">
+          <span class="hero-float-dot"></span>
+          <div>
+            <strong>Мерч під ключ</strong>
+            <small>макет • друк • доставка</small>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -534,28 +549,120 @@
       </div>
     </section>
 
-    <!-- ═══ КАТАЛОГ ═══ -->
-    <section id="examples" class="examples" data-aos="fade-up">
-      <span class="section-kicker">ВИБРАНІ РОБОТИ</span>
-      <h2 data-aos="fade-up" data-aos-delay="100">Наші Вироби</h2>
-      <div class="card-grid">
-        <div class="card" data-aos="zoom-in" data-aos-delay="200">
-          <img src="images/work3.jpg" alt="Футболки">
-          <h3>Футболки</h3>
+    <!-- ═══ ПОРТФОЛІО / EDITORIAL GALLERY ═══ -->
+    <section id="examples" class="examples portfolio-section" data-aos="fade-up">
+
+      <div class="portfolio-head">
+        <div>
+          <span class="section-kicker">ВИБРАНІ РОБОТИ</span>
+          <h2>Мерч як частина<br>візуальної культури.</h2>
         </div>
-        <div class="card" data-aos="zoom-in" data-aos-delay="300">
-          <img src="images/work4.jpg" alt="Худі">
-          <h3>Худі</h3>
-        </div>
-        <div class="card" data-aos="zoom-in" data-aos-delay="400">
-          <img src="images/work1.jpg" alt="Кружки">
-          <h3>Кружки</h3>
-        </div>
-        <div class="card" data-aos="zoom-in" data-aos-delay="500">
-          <img src="images/work2.jpg" alt="Сумки">
-          <h3>Сумки</h3>
+
+        <div class="portfolio-intro">
+          <p>
+            Не просто друкуємо на речах — збираємо цілісний образ:
+            від композиції та кольору до того, як принт виглядає в реальному житті.
+          </p>
+          <a href="#contact" class="portfolio-link">
+            Обговорити свій проєкт
+            <span>↗</span>
+          </a>
         </div>
       </div>
+
+      <div class="editorial-gallery">
+
+        <article class="work-card work-featured" data-aos="fade-up">
+          <img src="images/work3.jpg" alt="Футболка з авторським друком">
+
+          <div class="work-shade"></div>
+
+          <div class="work-topline">
+            <span class="work-index">01</span>
+            <span class="work-type">FEATURED / T-SHIRT</span>
+          </div>
+
+          <div class="work-content">
+            <div>
+              <span class="work-eyebrow">INDIVIDUAL MERCH</span>
+              <h3>Футболка як головний акцент образу</h3>
+            </div>
+
+            <span class="work-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="work-card work-tall" data-aos="fade-up" data-aos-delay="80">
+          <img src="images/work2.jpg" alt="Брендований шопер">
+
+          <div class="work-shade"></div>
+
+          <div class="work-topline">
+            <span class="work-index">02</span>
+            <span class="work-type">ACCESSORIES</span>
+          </div>
+
+          <div class="work-content">
+            <div>
+              <span class="work-eyebrow">DAILY OBJECT</span>
+              <h3>Шопер, який працює як носій бренду</h3>
+            </div>
+
+            <span class="work-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="work-card work-small" data-aos="fade-up" data-aos-delay="120">
+          <img src="images/work1.jpg" alt="Друк на аксесуарах">
+
+          <div class="work-shade"></div>
+
+          <div class="work-topline">
+            <span class="work-index">03</span>
+            <span class="work-type">DETAILS</span>
+          </div>
+
+          <div class="work-content">
+            <div>
+              <span class="work-eyebrow">SMALL FORMAT</span>
+              <h3>Деталі, що збирають стиль</h3>
+            </div>
+
+            <span class="work-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="work-card work-wide" data-aos="fade-up" data-aos-delay="160">
+          <img src="images/work4.jpg" alt="Брендований одяг">
+
+          <div class="work-shade"></div>
+
+          <div class="work-topline">
+            <span class="work-index">04</span>
+            <span class="work-type">APPAREL</span>
+          </div>
+
+          <div class="work-content">
+            <div>
+              <span class="work-eyebrow">BRAND SYSTEM</span>
+              <h3>Одяг, що виглядає як частина айдентики</h3>
+            </div>
+
+            <span class="work-arrow">↗</span>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="portfolio-foot">
+        <div class="portfolio-foot-line"></div>
+        <p>Твоя ідея може бути наступною.</p>
+        <a href="https://t.me/Incolor_manager" target="_blank">
+          Написати в Telegram
+          <span>→</span>
+        </a>
+      </div>
+
     </section>
 
     <!-- ═══ ІДЕЇ ДЛЯ МЕРЧУ ═══ -->
