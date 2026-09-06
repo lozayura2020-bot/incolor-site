@@ -3327,3 +3327,572 @@ footer a:hover {
     font-size: .58rem;
   }
 }
+
+
+/* ==========================================================
+   INCOLOR V5 — MICRO-INTERACTIONS & SECTION POLISH
+   ========================================================== */
+
+/* ---------- Global rhythm ---------- */
+section {
+  position: relative;
+}
+
+.section-wave {
+  isolation: isolate;
+}
+
+.section-wave::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 0;
+  width: min(1180px, 82vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(90deg,
+      transparent,
+      rgba(20,141,204,.18) 20%,
+      rgba(20,141,204,.30) 50%,
+      rgba(20,141,204,.18) 80%,
+      transparent);
+}
+
+/* ---------- Brand marquee ---------- */
+.brand-marquee {
+  overflow: hidden;
+  padding: 21px 0;
+  background:
+    linear-gradient(90deg, #071f34 0%, #0a304b 50%, #071f34 100%);
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.brand-marquee-track {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  animation: marqueeSlide 28s linear infinite;
+  will-change: transform;
+}
+
+.brand-marquee-track span {
+  color: rgba(237,249,255,.84);
+  font-family: "Satoshi", sans-serif;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  white-space: nowrap;
+}
+
+.brand-marquee-track i {
+  color: #61c9fa;
+  font-style: normal;
+  opacity: .8;
+}
+
+@keyframes marqueeSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ---------- Reveal system ---------- */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(6px);
+
+  transition:
+    opacity .85s var(--ease),
+    transform .85s var(--ease),
+    filter .85s ease;
+
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ---------- Custom cursor ---------- */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+}
+
+.has-custom-cursor .cursor-dot,
+.has-custom-cursor .cursor-ring {
+  opacity: 1;
+}
+
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor .faq-question {
+  cursor: none !important;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+
+  border-radius: 50%;
+  background: #0f86c5;
+
+  transition: opacity .2s ease;
+}
+
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  border: 1px solid rgba(13,128,188,.42);
+  background: rgba(223,245,255,.16);
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+
+  transition:
+    width .28s var(--ease),
+    height .28s var(--ease),
+    margin .28s var(--ease),
+    border-color .28s ease,
+    background .28s ease,
+    opacity .2s ease;
+}
+
+.cursor-ring span {
+  opacity: 0;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  transition: opacity .2s ease;
+}
+
+.cursor-ring.is-hovering {
+  width: 58px;
+  height: 58px;
+  margin: -29px 0 0 -29px;
+  border-color: rgba(37,168,238,.52);
+  background: rgba(37,168,238,.10);
+}
+
+.cursor-ring.is-view {
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  border-color: rgba(255,255,255,.48);
+  background: rgba(7,31,52,.72);
+}
+
+.cursor-ring.is-view span {
+  opacity: 1;
+}
+
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0 !important;
+}
+
+/* ---------- Offer / about ---------- */
+.offer {
+  background:
+    radial-gradient(circle at 9% 18%, rgba(100,207,255,.11), transparent 24%),
+    radial-gradient(circle at 91% 80%, rgba(200,209,255,.10), transparent 24%),
+    linear-gradient(180deg, #fbfdff 0%, #f6fbfe 100%);
+}
+
+.offer-row {
+  max-width: 1180px;
+}
+
+.text-box {
+  border: 1px solid rgba(8,47,77,.07);
+  background:
+    radial-gradient(circle at 0 0, rgba(81,194,247,.14), transparent 38%),
+    linear-gradient(145deg, #f6fbff, #ffffff);
+}
+
+.text-box::after {
+  content: "01";
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+
+  color: rgba(8,47,77,.06);
+  font-family: "Satoshi", sans-serif;
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.image-box {
+  position: relative;
+}
+
+.image-box::after {
+  content: "IN COLOR / PRINT STUDIO";
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+
+  padding: 8px 11px;
+
+  color: #fff;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+
+  background: rgba(5,34,54,.30);
+  backdrop-filter: blur(10px);
+}
+
+/* ---------- Merch lifestyle ---------- */
+.merch-cloud {
+  border-radius: 44px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.90), transparent 32%),
+    linear-gradient(145deg, rgba(255,255,255,.82), rgba(226,244,253,.68));
+}
+
+.merch-photo {
+  position: relative;
+}
+
+.merch-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+  pointer-events: none;
+}
+
+.merch-photo img {
+  transition:
+    transform .7s var(--ease),
+    filter .5s ease;
+}
+
+.merch-photo:hover img {
+  transform: scale(1.045);
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.merch-text h2 {
+  text-wrap: balance;
+}
+
+/* ---------- Service cards ---------- */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+
+  background:
+    linear-gradient(90deg, transparent, rgba(37,168,238,.76), transparent);
+
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .4s var(--ease);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card::after {
+  content: "↗";
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  color: var(--blue-dark);
+  background: #e9f7ff;
+
+  font-size: 15px;
+  opacity: 0;
+  transform: translateY(8px) rotate(-25deg);
+
+  transition:
+    opacity .3s ease,
+    transform .35s var(--ease);
+}
+
+.service-card:hover::after {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+}
+
+.service-card p {
+  padding-bottom: 26px;
+}
+
+/* ---------- Production ---------- */
+.production-grid {
+  counter-reset: process;
+}
+
+.production-card {
+  overflow: hidden;
+}
+
+.production-card::before {
+  counter-increment: process;
+  content: "0" counter(process);
+
+  position: absolute;
+  left: 18px;
+  bottom: -11px;
+
+  color: rgba(8,47,77,.035);
+  font-family: "Satoshi", sans-serif;
+  font-size: 6rem;
+  font-weight: 900;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+.production-card:hover .step-icon {
+  transform: translateY(-4px) rotate(-2deg);
+}
+
+.step-icon {
+  transition:
+    transform .35s var(--ease),
+    box-shadow .35s ease;
+}
+
+/* ---------- Partners ---------- */
+.partners-grid {
+  align-items: stretch;
+}
+
+.partner-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.partner-card::after {
+  content: "";
+  position: absolute;
+  left: -30%;
+  top: -50%;
+
+  width: 80px;
+  height: 220%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.55),
+    transparent
+  );
+
+  transform: rotate(18deg);
+  transition: left .7s var(--ease);
+}
+
+.partner-card:hover::after {
+  left: 120%;
+}
+
+.partner-name {
+  font-family: "Satoshi", sans-serif;
+  letter-spacing: -.02em;
+}
+
+/* ---------- FAQ ---------- */
+.faq-list {
+  max-width: 900px !important;
+}
+
+.faq-item {
+  overflow: hidden;
+  transition:
+    transform .3s var(--ease),
+    box-shadow .3s ease,
+    border-color .3s ease !important;
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(37,168,238,.18) !important;
+}
+
+.faq-item.open {
+  border-color: rgba(37,168,238,.28) !important;
+  box-shadow: 0 18px 50px rgba(37,168,238,.11) !important;
+}
+
+.faq-question {
+  font-family: "Manrope", sans-serif;
+}
+
+.faq-chevron {
+  transition:
+    transform .35s var(--ease),
+    stroke .25s ease !important;
+}
+
+.faq-item.open .faq-chevron {
+  stroke: var(--blue-dark) !important;
+}
+
+/* ---------- Contact ---------- */
+.contact-section {
+  padding-bottom: clamp(110px, 12vw, 170px);
+}
+
+#contactForm {
+  overflow: hidden;
+}
+
+#contactForm::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  left: -120px;
+  top: -120px;
+
+  border-radius: 50%;
+  background: rgba(64,188,246,.13);
+  filter: blur(30px);
+}
+
+#contactForm button {
+  position: relative;
+  overflow: hidden;
+}
+
+#contactForm button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -35%;
+
+  width: 28%;
+  height: 200%;
+
+  transform: rotate(22deg);
+  background: rgba(255,255,255,.28);
+
+  transition: left .6s var(--ease);
+}
+
+#contactForm button:hover::after {
+  left: 120%;
+}
+
+/* ---------- Image hover, site-wide ---------- */
+.work-card img,
+.showcase-card img,
+.card img,
+.image-box img,
+.merch-photo img,
+.service-card img {
+  will-change: transform;
+}
+
+/* ---------- Section title polish ---------- */
+section > h2,
+.production-header h2,
+.showcase-heading h2,
+.portfolio-head h2,
+.contact-section h2 {
+  text-wrap: balance;
+}
+
+.section-kicker {
+  opacity: .92;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .brand-marquee {
+    padding: 17px 0;
+  }
+
+  .brand-marquee-track {
+    gap: 22px;
+  }
+
+  .brand-marquee-track span {
+    font-size: .67rem;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-wave::before {
+    width: calc(100% - 28px);
+  }
+
+  .text-box::after {
+    font-size: 5rem;
+  }
+
+  .service-card::after {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee-track {
+    animation: none !important;
+  }
+
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
