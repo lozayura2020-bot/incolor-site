@@ -44,3 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+// ═══ HEADER SCROLL EFFECT ═══
+
+const siteHeader = document.getElementById('siteHeader');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    siteHeader.classList.add('scrolled');
+  } else {
+    siteHeader.classList.remove('scrolled');
+  }
+}, { passive: true });
