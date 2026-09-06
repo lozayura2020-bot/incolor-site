@@ -359,33 +359,57 @@
 <body>
 
   <!-- ═══ ШАПКА ═══ -->
-  <header>
-    <a href="#hero" class="logo-row" style="text-decoration:none;">
-      <img src="logo.png" alt="InColor logo">
-      <div>
-        <div class="site-title">INC</div>
-        <div class="site-subtitle">InColor — Друк одягу</div>
-      </div>
+  <!-- ═══ НОВА ШАПКА ═══ -->
+<header class="site-header" id="siteHeader">
+
+  <a href="#hero" class="brand">
+    <div class="brand-name">
+      INC<span>O</span>LOR
+    </div>
+    <div class="brand-subtitle">PRINT STUDIO</div>
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="#hero" class="active">Головна</a>
+    <a href="#offer">Про нас</a>
+    <a href="#examples">Каталог</a>
+    <a href="#services">Технології</a>
+    <a href="#contact">Контакти</a>
+    <a href="#partners">Партнери</a>
+  </nav>
+
+  <div class="header-actions">
+
+    <a
+      href="https://t.me/Incolor_manager"
+      target="_blank"
+      class="header-telegram"
+      aria-label="Telegram"
+    >
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M21.7 3.2L18.4 20c-.25 1.2-.92 1.5-1.86.94l-5.1-3.76-2.46 2.37c-.27.27-.5.5-1.02.5l.37-5.2 9.46-8.55c.41-.37-.09-.58-.64-.21L5.46 13.18.42 11.6c-1.1-.35-1.12-1.1.23-1.61L20.36 2.4c.92-.34 1.72.21 1.34.8Z"
+          fill="currentColor"
+        />
+      </svg>
     </a>
 
-    <nav>
-      <a href="#hero">Головна</a>
-      <a href="#offer">Про нас</a>
-      <a href="#examples">Каталог</a>
-      <a href="#services">Технології</a>
-      <a href="#contact">Контакти</a>
-      <a href="#partners">Партнери</a>
-    </nav>
+    <div class="header-divider"></div>
 
-    <div class="contacts">
-      <div><a href="mailto:incolor.ra@gmail.com">incolor.ra@gmail.com</a></div>
-      <div><a href="tel:+380950173045">095 017 30 45</a></div>
-    </div>
+    <a href="#contact" class="header-order">
+      <span>Замовити</span>
+      <span class="header-arrow">→</span>
+    </a>
 
-    <button class="burger" id="burgerBtn" aria-label="Меню">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
+  </div>
+
+  <button class="burger" id="burgerBtn" aria-label="Відкрити меню">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</header>
 
   <!-- МОБІЛЬНЕ МЕНЮ -->
   <nav class="mobile-nav" id="mobileNav">
