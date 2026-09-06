@@ -936,6 +936,18 @@
         alert('❌ Помилка надсилання. Спробуйте пізніше.');
       }
     });
+    // ═══ HEADER SCROLL EFFECT ═══
+    const siteHeader = document.getElementById('siteHeader');
+
+    window.addEventListener('scroll', () => {
+      if (!siteHeader) return;
+      if (window.scrollY > 60) {
+        siteHeader.classList.add('scrolled');
+      } else {
+        siteHeader.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
   </script>
 
 </body>
