@@ -5034,3 +5034,22 @@ section > h2,
   font-size: .66rem;
   line-height: 1.4;
 }
+
+/* Generated lifestyle concepts, scoped to the two lifestyle cards. */
+#merch .merch-photo.left > img {
+  content: url("images/lifestyle-hoodie-concept.webp") / "Концепт InColor: блакитне худі з принтом на спині";
+  object-fit: cover;
+  object-position: center;
+}
+#merch .merch-photo.right > img {
+  content: url("images/lifestyle-shirt-concept.webp") / "Концепт InColor: біла футболка з блакитним принтом";
+  object-fit: cover;
+  object-position: center;
+}
+#merch .merch-text p::after {
+  content: "Візуалізації — AI-концепти InColor.";
+  display: block;
+  margin-top: 12px;
+  font-size: .75rem;
+  line-height: 1.5;
+}
