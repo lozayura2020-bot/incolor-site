@@ -3505,6 +3505,42 @@ footer a:hover {
   }
 }
 
+/* Real InColor work — unique imagery per portfolio section */
+.work-featured > img {
+  content: url("images/portfolio-skate-enhanced.webp");
+  object-position: center 34%;
+}
+
+.work-tall > img {
+  content: url("images/portfolio-city-enhanced.webp");
+  object-position: center;
+}
+
+.work-small > img {
+  content: url("images/portfolio-cap-mug-enhanced.webp");
+  object-position: center;
+}
+
+.work-wide > img {
+  content: url("images/portfolio-print-enhanced.webp");
+  object-position: center 48%;
+}
+
+.showcase-card-wide > img {
+  content: url("images/showcase-couple-set.webp");
+  object-position: center 30%;
+}
+
+.showcase-card:not(.showcase-card-wide):nth-of-type(2) > img {
+  content: url("images/showcase-shirt-red.webp");
+  object-position: center;
+}
+
+.showcase-card:not(.showcase-card-wide):nth-of-type(3) > img {
+  content: url("images/showcase-shirt-black.webp");
+  object-position: center;
+}
+
 
 /* ==========================================================
    INCOLOR V5 — MICRO-INTERACTIONS & SECTION POLISH
