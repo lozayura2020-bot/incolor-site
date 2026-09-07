@@ -5053,3 +5053,76 @@ section > h2,
   font-size: .75rem;
   line-height: 1.5;
 }
+
+/* BEGIN INCOLOR POLISH V1 — isolated, reversible layout refinement */
+#merch .merch-cloud {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(24px, 3.5vw, 44px);
+}
+#merch .merch-text h2 { font-size: 0; line-height: 0; margin-bottom: 20px; }
+#merch .merch-text h2 br { display: none; }
+#merch .merch-text h2::after {
+  content: "Твій стиль — у русі.";
+  display: block;
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+#merch .merch-text p { font-size: 1rem; line-height: 1.65; }
+#merch .merch-photo { width: 100%; min-width: 0; }
+#merch .merch-photo img { display: block; }
+.social-tab:focus-visible, .drawer-link:focus-visible {
+  outline: 3px solid #087ab4;
+  outline-offset: 4px;
+}
+@media (max-width: 1040px) {
+  #merch .merch-cloud { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #merch .merch-text { grid-column: 1 / -1; order: -1; max-width: 560px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  #merch .merch-cloud { padding: 22px 16px; gap: 14px; border-radius: 28px; }
+  #merch .merch-photo { border-radius: 18px; margin: 0; }
+  #merch .merch-text h2::after { font-size: clamp(2rem, 9vw, 2.75rem); }
+  #merch .merch-text .section-kicker { margin-bottom: 14px; }
+  #merch .merch-text p { margin-bottom: 10px; }
+  body .social-trigger-wrap {
+    top: auto;
+    right: 12px !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    transform: none;
+  }
+  body .social-trigger-wrap .social-tab {
+    flex-direction: row;
+    min-height: 44px;
+    padding: 10px 14px;
+    gap: 8px;
+    border: 1px solid rgba(45,174,230,.25);
+    border-radius: 24px !important;
+  }
+  body .social-tab .social-tab-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: .875rem;
+    letter-spacing: .02em;
+    text-transform: none;
+  }
+  body .social-drawer {
+    top: auto;
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    transform: none;
+    width: min(280px, calc(100vw - 24px)) !important;
+    right: -310px !important;
+    max-height: 65dvh;
+    overflow-y: auto;
+    border-radius: 22px !important;
+  }
+  body .social-drawer.open { right: 12px !important; }
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #merch .merch-photo, #merch .merch-photo img { transition: none; }
+  #merch .merch-photo:hover, #merch .merch-photo:hover img { transform: none; }
+}
+/* END INCOLOR POLISH V1 */
