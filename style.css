@@ -4998,3 +4998,39 @@ section > h2,
     display: none;
   }
 }
+
+/* Temporary visual captions; migrate to semantic HTML when safe to publish it. */
+.work-featured { --caption: "Одна команда. Свій стиль. Повний вперед."; --category: "КОМАНДНИЙ ОДЯГ"; --eyebrow: "ШКОЛА РОЛЕРІВ"; }
+.work-tall { --caption: "Носи своє місто з гордістю."; --category: "СВІТШОТ"; --eyebrow: "ХАРКІВ"; }
+.work-small { --caption: "Твій бренд у щоденних деталях."; --category: "КЕПКА ТА ЧАШКА"; --eyebrow: "ФІРМОВИЙ СТИЛЬ"; }
+.work-wide { --caption: "Принт, який хочеться роздивлятися."; --category: "ДРУК НА ОДЯЗІ"; --eyebrow: "ДЕТАЛІ ЗБЛИЗЬКА"; }
+.showcase-card-wide { --caption: "Разом — ще тепліше."; --category: "ПОДАРУНКОВИЙ КОМПЛЕКТ"; }
+.showcase-card:not(.showcase-card-wide):nth-of-type(2) { --caption: "Футболка з характером"; --category: "ПРИНТИ НА ФУТБОЛКАХ"; }
+.showcase-card:not(.showcase-card-wide):nth-of-type(3) { --caption: "Твій настрій. Твій принт."; --category: "ПРИНТИ НА ФУТБОЛКАХ"; }
+.work-card .work-content h3, .showcase-card .showcase-overlay h3,
+.work-card .work-type, .work-card .work-eyebrow, .showcase-card .showcase-overlay > span {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+.work-card .work-content h3::after {
+  content: var(--caption);
+  display: block;
+  font-size: clamp(1.35rem, 2.4vw, 2.35rem);
+  line-height: 1.12;
+}
+.showcase-card .showcase-overlay h3::after {
+  content: var(--caption);
+  display: block;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  line-height: 1.15;
+}
+.work-card .work-type::after, .showcase-card .showcase-overlay > span::after {
+  content: var(--category);
+  font-size: .66rem;
+  line-height: 1.4;
+}
+.work-card .work-eyebrow::after {
+  content: var(--eyebrow);
+  font-size: .66rem;
+  line-height: 1.4;
+}
