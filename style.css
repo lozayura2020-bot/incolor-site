@@ -3395,6 +3395,7 @@ footer a:hover {
   }
 
   .mobile-merch-shirt {
+    content: url("images/hero-shirt-generated.webp");
     left: 50%;
     bottom: -15px;
     z-index: 3;
@@ -3404,6 +3405,7 @@ footer a:hover {
   }
 
   .mobile-merch-bag {
+    content: url("images/hero-bag-generated.webp");
     left: -8px;
     bottom: -25px;
     z-index: 2;
@@ -3414,6 +3416,7 @@ footer a:hover {
   }
 
   .mobile-merch-cup {
+    content: url("images/hero-cup-generated.webp");
     right: -6px;
     bottom: 1px;
     z-index: 4;
