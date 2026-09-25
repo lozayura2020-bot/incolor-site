@@ -5020,3 +5020,39 @@ section > h2,
   .services-grid .service-card:last-child { grid-column: 1 / -1; justify-self: center; width: 100%; max-width: 610px; }
 }
 .trust-item:last-child strong { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+
+@media (max-width: 640px) {
+  body .social-trigger-wrap {
+    top: auto;
+    right: 12px !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    transform: none;
+  }
+  body .social-trigger-wrap .social-tab {
+    flex-direction: row;
+    min-height: 44px;
+    padding: 10px 14px;
+    gap: 8px;
+    border: 1px solid rgba(45,174,230,.25);
+    border-radius: 24px !important;
+  }
+  body .social-tab .social-tab-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: .875rem;
+    letter-spacing: .02em;
+    text-transform: none;
+  }
+  body .social-drawer {
+    top: auto;
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    transform: none;
+    width: min(280px, calc(100vw - 24px)) !important;
+    right: -310px !important;
+    max-height: 65dvh;
+    overflow-y: auto;
+    border-radius: 22px !important;
+  }
+  body .social-drawer.open { right: 12px !important; }
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+}
