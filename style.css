@@ -3507,37 +3507,37 @@ footer a:hover {
 
 /* Real InColor work — unique imagery per portfolio section */
 .work-featured > img {
-  content: url("images/portfolio-skate-enhanced.webp");
+
   object-position: center 34%;
 }
 
 .work-tall > img {
-  content: url("images/portfolio-city-enhanced.webp");
+
   object-position: center;
 }
 
 .work-small > img {
-  content: url("images/portfolio-cap-mug-enhanced.webp");
+
   object-position: center;
 }
 
 .work-wide > img {
-  content: url("images/portfolio-print-enhanced.webp");
+
   object-position: center 48%;
 }
 
 .showcase-card-wide > img {
-  content: url("images/showcase-couple-set.webp");
+
   object-position: center 30%;
 }
 
 .showcase-card:not(.showcase-card-wide):nth-of-type(2) > img {
-  content: url("images/showcase-shirt-red.webp");
+
   object-position: center;
 }
 
 .showcase-card:not(.showcase-card-wide):nth-of-type(3) > img {
-  content: url("images/showcase-shirt-black.webp");
+
   object-position: center;
 }
 
@@ -4999,130 +4999,19 @@ section > h2,
   }
 }
 
-/* Temporary visual captions; migrate to semantic HTML when safe to publish it. */
-.work-featured { --caption: "Одна команда. Свій стиль. Повний вперед."; --category: "КОМАНДНИЙ ОДЯГ"; --eyebrow: "ШКОЛА РОЛЕРІВ"; }
-.work-tall { --caption: "Носи своє місто з гордістю."; --category: "СВІТШОТ"; --eyebrow: "ХАРКІВ"; }
-.work-small { --caption: "Твій бренд у щоденних деталях."; --category: "КЕПКА ТА ЧАШКА"; --eyebrow: "ФІРМОВИЙ СТИЛЬ"; }
-.work-wide { --caption: "Принт, який хочеться роздивлятися."; --category: "ДРУК НА ОДЯЗІ"; --eyebrow: "ДЕТАЛІ ЗБЛИЗЬКА"; }
-.showcase-card-wide { --caption: "Разом — ще тепліше."; --category: "ПОДАРУНКОВИЙ КОМПЛЕКТ"; }
-.showcase-card:not(.showcase-card-wide):nth-of-type(2) { --caption: "Футболка з характером"; --category: "ПРИНТИ НА ФУТБОЛКАХ"; }
-.showcase-card:not(.showcase-card-wide):nth-of-type(3) { --caption: "Твій настрій. Твій принт."; --category: "ПРИНТИ НА ФУТБОЛКАХ"; }
-.work-card .work-content h3, .showcase-card .showcase-overlay h3,
-.work-card .work-type, .work-card .work-eyebrow, .showcase-card .showcase-overlay > span {
-  font-size: 0 !important;
-  line-height: 0 !important;
-}
-.work-card .work-content h3::after {
-  content: var(--caption);
-  display: block;
-  font-size: clamp(1.35rem, 2.4vw, 2.35rem);
-  line-height: 1.12;
-}
-.showcase-card .showcase-overlay h3::after {
-  content: var(--caption);
-  display: block;
-  font-size: clamp(1.25rem, 2vw, 1.8rem);
-  line-height: 1.15;
-}
-.work-card .work-type::after, .showcase-card .showcase-overlay > span::after {
-  content: var(--category);
-  font-size: .66rem;
-  line-height: 1.4;
-}
-.work-card .work-eyebrow::after {
-  content: var(--eyebrow);
-  font-size: .66rem;
-  line-height: 1.4;
-}
-
-/* Generated lifestyle concepts, scoped to the two lifestyle cards. */
-#merch .merch-photo.left > img {
-  content: url("images/lifestyle-hoodie-concept.webp") / "Концепт InColor: блакитне худі з принтом на спині";
-  object-fit: cover;
-  object-position: center;
-}
-#merch .merch-photo.right > img {
-  content: url("images/lifestyle-shirt-concept.webp") / "Концепт InColor: біла футболка з блакитним принтом";
-  object-fit: cover;
-  object-position: center;
-}
-#merch .merch-text p::after {
-  content: "Візуалізації — AI-концепти InColor.";
-  display: block;
-  margin-top: 12px;
-  font-size: .75rem;
-  line-height: 1.5;
-}
-
-/* BEGIN INCOLOR POLISH V1 — isolated, reversible layout refinement */
-#merch .merch-cloud {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, 1fr);
-  gap: clamp(20px, 3vw, 40px);
-  padding: clamp(24px, 3.5vw, 44px);
-}
-#merch .merch-text h2 { font-size: 0; line-height: 0; margin-bottom: 20px; }
-#merch .merch-text h2 br { display: none; }
-#merch .merch-text h2::after {
-  content: "Твій стиль — у русі.";
-  display: block;
-  font-size: clamp(2rem, 3.6vw, 3.5rem);
-  line-height: 1.08;
-  letter-spacing: -.035em;
-  text-wrap: balance;
-}
-#merch .merch-text p { font-size: 1rem; line-height: 1.65; }
-#merch .merch-photo { width: 100%; min-width: 0; }
-#merch .merch-photo img { display: block; }
+.services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1180px) { .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+.mobile-nav a.active { color: var(--blue-dark); font-weight: 800; }
+.desktop-nav a:focus-visible, .mobile-nav a:focus-visible,
 .social-tab:focus-visible, .drawer-link:focus-visible {
   outline: 3px solid #087ab4;
   outline-offset: 4px;
 }
-@media (max-width: 1040px) {
-  #merch .merch-cloud { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #merch .merch-text { grid-column: 1 / -1; order: -1; max-width: 560px; margin: 0 auto; }
-}
-@media (max-width: 640px) {
-  #merch .merch-cloud { padding: 22px 16px; gap: 14px; border-radius: 28px; }
-  #merch .merch-photo { border-radius: 18px; margin: 0; }
-  #merch .merch-text h2::after { font-size: clamp(2rem, 9vw, 2.75rem); }
-  #merch .merch-text .section-kicker { margin-bottom: 14px; }
-  #merch .merch-text p { margin-bottom: 10px; }
-  body .social-trigger-wrap {
-    top: auto;
-    right: 12px !important;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    transform: none;
-  }
-  body .social-trigger-wrap .social-tab {
-    flex-direction: row;
-    min-height: 44px;
-    padding: 10px 14px;
-    gap: 8px;
-    border: 1px solid rgba(45,174,230,.25);
-    border-radius: 24px !important;
-  }
-  body .social-tab .social-tab-label {
-    writing-mode: horizontal-tb;
-    transform: none;
-    font-size: .875rem;
-    letter-spacing: .02em;
-    text-transform: none;
-  }
-  body .social-drawer {
-    top: auto;
-    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
-    transform: none;
-    width: min(280px, calc(100vw - 24px)) !important;
-    right: -310px !important;
-    max-height: 65dvh;
-    overflow-y: auto;
-    border-radius: 22px !important;
-  }
-  body .social-drawer.open { right: 12px !important; }
-  body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  #merch .merch-photo, #merch .merch-photo img { transition: none; }
-  #merch .merch-photo:hover, #merch .merch-photo:hover img { transform: none; }
-}
-/* END INCOLOR POLISH V1 */
+/* END INCOLOR SITE POLISH V2 */
+
+.form-status { grid-column: 1 / -1; margin: 4px 0 0; padding: 14px 18px; border-radius: 14px; font-weight: 650; line-height: 1.45; }
+.form-status[hidden] { display: none; }
+.form-status[data-state="success"] { color: #14624c; background: #e5f7ef; }
+.form-status[data-state="error"] { color: #8d3030; background: #fff0f0; }
+#contactForm button:disabled { cursor: wait; opacity: .65; }
