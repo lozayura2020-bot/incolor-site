@@ -5015,3 +5015,8 @@ section > h2,
 .form-status[data-state="success"] { color: #14624c; background: #e5f7ef; }
 .form-status[data-state="error"] { color: #8d3030; background: #fff0f0; }
 #contactForm button:disabled { cursor: wait; opacity: .65; }
+
+@media (max-width: 1180px) and (min-width: 641px) {
+  .services-grid .service-card:last-child { grid-column: 1 / -1; justify-self: center; width: 100%; max-width: 610px; }
+}
+.trust-item:last-child strong { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
