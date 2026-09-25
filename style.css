@@ -5126,3 +5126,17 @@ section > h2,
   #merch .merch-photo:hover, #merch .merch-photo:hover img { transform: none; }
 }
 /* END INCOLOR POLISH V1 */
+
+/* Restore the native cursor while the legacy cursor script remains in the page. */
+.cursor-dot,
+.cursor-ring,
+.has-custom-cursor .cursor-dot,
+.has-custom-cursor .cursor-ring {
+  display: none !important;
+}
+html.has-custom-cursor { cursor: auto !important; }
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor .faq-question { cursor: pointer !important; }
+html.has-custom-cursor input,
+html.has-custom-cursor textarea { cursor: text !important; }
