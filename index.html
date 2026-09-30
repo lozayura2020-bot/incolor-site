@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="studio.css">
 
   <style>
     /* ─── SLIDING SOCIAL DRAWER ─── */
@@ -424,6 +425,7 @@
     <a href="#hero" class="active">Головна</a>
     <a href="#offer">Про нас</a>
     <a href="#examples">Приклади</a>
+    <a href="#studio">Конструктор</a>
     <a href="#services">Технології</a>
     <a href="#contact">Контакти</a>
   </nav>
@@ -466,6 +468,7 @@
     <a href="#hero"     onclick="closeMobile()">Головна</a>
     <a href="#offer"    onclick="closeMobile()">Про нас</a>
     <a href="#examples" onclick="closeMobile()">Приклади</a>
+    <a href="#studio" onclick="closeMobile()">Конструктор</a>
     <a href="#services" onclick="closeMobile()">Технології</a>
     <a href="#contact"  onclick="closeMobile()">Контакти</a>
   </nav>
@@ -504,16 +507,16 @@
 
         <p>
           Створюємо мерч і брендовану продукцію: футболки, худі, сумки та кружки
-          від трьох виробів до великих партій. Допоможемо з макетом,
+          від одного виробу до великих партій. Допоможемо з макетом,
           підберемо технологію друку та доведемо ідею до готового виробу.
         </p>
 
         <div class="hero-actions">
-          <a href="https://t.me/Incolor_manager" target="_blank" class="hero-primary">
+          <a href="#studio" class="hero-primary">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9.04 15.23l-.39 5.48c.56 0 .8-.24 1.09-.53l2.61-2.49 5.41 3.95c.99.55 1.7.26 1.95-.92l3.53-16.55v-.01c.32-1.48-.54-2.06-1.5-1.7L1.6 9.4C.15 9.98.16 10.84 1.34 11.2l5.3 1.65L18.85 5.3c.57-.37 1.09-.17.66.2"/>
             </svg>
-            Розпочати проєкт
+            Створити свій мерч
           </a>
 
           <a href="#examples" class="hero-secondary">
@@ -553,7 +556,7 @@
     <section class="trust-strip" aria-label="Переваги InColor">
       <div class="trust-item">
         <strong>1+</strong>
-        <span>від одного вироба</span>
+        <span>від одного виробу</span>
       </div>
       <div class="trust-item">
         <strong>3</strong>
@@ -570,17 +573,85 @@
     </section>
 
 
+
+    <!-- Interactive InColor studio. Catalogue and prices: studio.js -->
+    <section id="studio" class="studio-section">
+      <div class="studio-head">
+        <div><span class="section-kicker">ТВІЙ МЕРЧ / ТВОЇ ПРАВИЛА</span><h2>Уяви. Збери.<br>Носи своє.</h2></div>
+        <p>Обери основу, додай свій дизайн і подивись, як він виглядатиме. Орієнтовну вартість порахуємо одразу.</p>
+      </div>
+      <div class="studio-grid">
+        <div class="studio-preview">
+          <div class="studio-preview-top"><span id="studioProductName">Футболка</span><span>LIVE PREVIEW ↗</span></div>
+          <div id="studioCanvas"></div>
+          <p class="studio-preview-caption">Схематичне прев’ю. Посадку, відтінок і розміри друку погодимо з менеджером.</p>
+          <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap"><button type="button" class="studio-outline" id="studioDownload">Зберегти прев’ю ↓</button><button type="button" class="studio-outline" id="studioReset">Скинути</button></div>
+        </div>
+        <div class="studio-controls">
+          <p class="studio-label">01 / ОСНОВА</p>
+          <div class="studio-products" role="group" aria-label="Виріб">
+            <button type="button" data-studio-product="shirt" aria-pressed="true">Футболка</button>
+            <button type="button" data-studio-product="hoodie" aria-pressed="false">Худі</button>
+            <button type="button" data-studio-product="sweat" aria-pressed="false">Світшот</button>
+            <button type="button" data-studio-product="cap" aria-pressed="false">Кепка</button>
+            <button type="button" data-studio-product="mug" aria-pressed="false">Кружка</button>
+          </div>
+          <p class="studio-label">Колір <span id="studioColorName">Білий</span></p>
+          <div class="studio-swatches" id="studioColors" role="group" aria-label="Колір виробу"></div>
+          <div class="studio-row">
+            <div><label class="studio-label" for="studioSize">Розмір</label><select id="studioSize"></select></div>
+            <div><label class="studio-label" for="studioPrint">Технологія друку</label><select id="studioPrint"></select></div>
+          </div>
+          <div class="studio-row">
+            <div><label class="studio-label" for="studioQty">Кількість, шт.</label><input id="studioQty" type="number" min="1" max="10000" step="1" value="1"></div>
+            <div><label class="studio-label" for="studioTextColor">Колір тексту</label><input id="studioTextColor" type="color" value="#1684c6"></div>
+          </div>
+          <div class="studio-design">
+            <label class="studio-label" for="studioText">02 / ТВІЙ ДИЗАЙН</label>
+            <input id="studioText" type="text" maxlength="40" value="ТВІЙ ДИЗАЙН" placeholder="Напиши свою ідею" aria-label="Текст принта">
+            <div class="studio-upload" style="margin-top:16px">
+              <label class="studio-label" for="studioFile">Або додай зображення</label>
+              <input id="studioFile" type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="studioFileHelp">
+              <small id="studioFileHelp">PNG, JPG або WebP до 8 МБ. Для логотипа краще PNG із прозорим фоном.</small>
+              <button type="button" id="studioRemove" class="studio-outline">Прибрати зображення</button>
+            </div>
+            <label class="studio-label" for="studioScale">Масштаб принта <span id="studioScaleValue">85%</span></label>
+            <input id="studioScale" type="range" min="20" max="150" value="85">
+            <div class="studio-row">
+              <div><label class="studio-label" for="studioX">Ліворуч / праворуч</label><input id="studioX" type="range" min="-80" max="80" value="0"></div>
+              <div><label class="studio-label" for="studioY">Вгору / вниз</label><input id="studioY" type="range" min="-80" max="80" value="0"></div>
+            </div>
+            <label style="font-size:12px;color:#526e83"><input id="studioGuides" type="checkbox" checked> Показати межі області друку</label>
+          </div>
+          <div class="studio-price" aria-live="polite" aria-atomic="true">
+            <div><small>Орієнтовна вартість</small><strong id="studioTotal"></strong><small id="studioUnit"></small></div>
+            <span class="studio-discount" id="studioDiscount" style="white-space:pre-line"></span>
+          </div>
+          <button type="button" class="studio-order" id="studioOrder">Обговорити цей дизайн <span>↗</span></button>
+          <p class="studio-status" id="studioStatus" role="status"></p>
+          <p class="studio-note">Остаточну ціну та доступність підтвердимо після перевірки макета. Зображення з прев’ю потрібно надіслати менеджеру окремо.</p>
+        </div>
+      </div>
+      <div class="studio-compare">
+        <div><span class="section-kicker section-kicker-light">ВІД ЧИСТОЇ ОСНОВИ ДО ІДЕЇ</span><h3>Один рух.<br>І вже твій стиль.</h3><p>Посунь повзунок, щоб порівняти основу та свій дизайн. Тут відображається саме те, що ти зібрав у конструкторі.</p></div>
+        <div><div id="compareStage" class="compare-stage"><div id="compareBefore"></div><div id="compareAfter" class="compare-after"></div><div class="compare-divider" aria-hidden="true"></div></div>
+          <div class="compare-labels"><span>Без принта</span><span>Твій дизайн</span></div>
+          <label for="compareRange" class="studio-label" style="color:white;margin-top:16px">Порівняти до / після</label><input class="compare-range" type="range" id="compareRange" min="0" max="100" value="50">
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ BRAND MARQUEE ═══ -->
     <section class="brand-marquee" aria-label="InColor capabilities">
       <div class="brand-marquee-track">
         <span>DTF PRINT</span><i>✦</i>
         <span>DTG PRINT</span><i>✦</i>
         <span>SUBLIMATION</span><i>✦</i>
-        <span>FROM 3 PIECES</span><i>✦</i>
+        <span>ВІД 1 ШТ.</span><i>✦</i>
         <span>DTF PRINT</span><i>✦</i>
         <span>DTG PRINT</span><i>✦</i>
         <span>SUBLIMATION</span><i>✦</i>
-        <span>FROM 3 PIECES</span><i>✦</i>
+        <span>ВІД 1 ШТ.</span><i>✦</i>
       </div>
     </section>
 
@@ -1117,7 +1188,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     // AOS
-    AOS.init({ duration: 900, once: true, offset: 100, easing: 'ease-out-back' });
+    if (window.AOS) AOS.init({ duration: 900, once: true, offset: 100, easing: 'ease-out-back' });
 
     // ─── Соціальна шторка ───
     let drawerOpen = false;
@@ -1350,5 +1421,10 @@
 
   </script>
 
+  <dialog id="studioLightbox" class="studio-lightbox" aria-labelledby="studioZoomTitle">
+    <header><strong id="studioZoomTitle"></strong><button id="studioZoomClose" type="button" aria-label="Закрити фото">×</button></header>
+    <img id="studioZoomImage" alt="">
+  </dialog>
+  <script src="studio.js"></script>
 </body>
 </html>
