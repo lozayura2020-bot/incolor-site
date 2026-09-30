@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="details.css">
 
   <style>
     /* ─── SLIDING SOCIAL DRAWER ─── */
@@ -403,13 +404,6 @@
 
 <body>
 
-  <!-- Premium custom cursor (desktop only) -->
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true">
-    <span>VIEW</span>
-  </div>
-
-
   <!-- ═══ НОВА ШАПКА ═══ -->
 <header class="site-header" id="siteHeader">
 
@@ -476,14 +470,7 @@
     <section id="hero" class="hero">
       <div class="hero-grid-bg"></div>
 
-      <div class="falling-items" aria-hidden="true">
-        <img src="images/item-shirt.png" alt="">
-        <img src="images/item-hoodie.png" alt="">
-        <img src="images/item-cup.png" alt="">
-        <img src="images/item-bag.png" alt="">
-      </div>
-
-      <div class="hero-decor" aria-hidden="true">
+<div class="hero-decor" aria-hidden="true">
         <div class="shape circle1" data-speed="1.5"></div>
         <div class="shape circle2" data-speed="1.2"></div>
         <div class="shape triangle" data-speed="0.9"></div>
@@ -504,7 +491,7 @@
 
         <p>
           Створюємо мерч і брендовану продукцію: футболки, худі, сумки та кружки
-          від трьох виробів до великих партій. Допоможемо з макетом,
+          від одного виробу до великих партій. Допоможемо з макетом,
           підберемо технологію друку та доведемо ідею до готового виробу.
         </p>
 
@@ -553,7 +540,7 @@
     <section class="trust-strip" aria-label="Переваги InColor">
       <div class="trust-item">
         <strong>1+</strong>
-        <span>від одного вироба</span>
+        <span>від одного виробу</span>
       </div>
       <div class="trust-item">
         <strong>3</strong>
@@ -576,11 +563,25 @@
         <span>DTF PRINT</span><i>✦</i>
         <span>DTG PRINT</span><i>✦</i>
         <span>SUBLIMATION</span><i>✦</i>
-        <span>FROM 3 PIECES</span><i>✦</i>
+        <span>ВІД 1 ШТ.</span><i>✦</i>
         <span>DTF PRINT</span><i>✦</i>
         <span>DTG PRINT</span><i>✦</i>
         <span>SUBLIMATION</span><i>✦</i>
-        <span>FROM 3 PIECES</span><i>✦</i>
+        <span>ВІД 1 ШТ.</span><i>✦</i>
+      </div>
+    </section>
+
+
+    <section id="for-you" class="audience-section">
+      <div class="audience-heading"><span class="section-kicker">РІЗНІ ІДЕЇ. ОДНА СТУДІЯ.</span><h2>Щось особисте.<br>Щось спільне. Щось твоє.</h2></div>
+      <div class="audience-tabs" role="tablist" aria-label="Для кого потрібен мерч">
+        <button type="button" id="audience-self" role="tab" aria-selected="true" aria-controls="audience-panel" data-audience="self">Для себе <span>01</span></button>
+        <button type="button" id="audience-team" role="tab" aria-selected="false" aria-controls="audience-panel" tabindex="-1" data-audience="team">Для команди <span>02</span></button>
+        <button type="button" id="audience-business" role="tab" aria-selected="false" aria-controls="audience-panel" tabindex="-1" data-audience="business">Для бізнесу <span>03</span></button>
+      </div>
+      <div class="audience-panel" id="audience-panel" role="tabpanel" aria-labelledby="audience-self" tabindex="0">
+        <div class="audience-photo"><img id="audience-image" src="images/portfolio-city-enhanced.webp" alt="Світшот з принтом Харків" loading="lazy"><span id="audience-tag">ТВОЯ ІДЕЯ / ТВОЯ РІЧ</span></div>
+        <div class="audience-copy"><span class="audience-eyebrow" id="audience-eyebrow">НЕХАЙ РЕЧІ ГОВОРЯТЬ ЗА ТЕБЕ</span><h3 id="audience-title">Те, що хочеться носити.</h3><p id="audience-description">Улюблене місто, власна ілюстрація або напис зі змістом. Допоможемо перенести твою ідею на одяг чи аксесуари.</p><div id="audience-chips" class="audience-chips"><span>Футболки</span><span>Худі</span><span>Кружки</span></div><button type="button" id="audience-order" class="details-cta">Обговорити мою ідею <span>↗</span></button><p class="audience-footnote">Є готовий макет чи лише задум? Почнемо з того, що маєш.</p></div>
       </div>
     </section>
 
@@ -861,6 +862,12 @@
     </section>
 
     <!-- ═══ ЕТАПИ ВИРОБНИЦТВА ═══ -->
+
+    <section class="process-story" id="process-story">
+      <div class="process-photo"><img id="process-poster" src="images/portfolio-print-enhanced.webp" alt="Деталі принта на тканині" loading="lazy"><video id="process-video" controls playsinline preload="none" poster="images/portfolio-print-enhanced.webp" hidden aria-label="Як друкують в InColor"></video><span class="process-caption" id="process-caption">ДЕТАЛІ ДРУКУ / INCOLOR</span></div>
+      <div class="process-copy"><span class="section-kicker">ПОБЛИЖЧЕ ДО РЕЗУЛЬТАТУ</span><h2 id="process-title">Вся увага —<br>до деталей.</h2><p id="process-description">Колір, композиція та розташування принта формують характер речі. Роздивись приклад друку зблизька.</p><button type="button" class="details-cta" id="process-open">Роздивитися принт <span>↗</span></button></div>
+    </section>
+
 <section class="production section-wave">
   <div class="production-bg"></div>
 
@@ -1117,7 +1124,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     // AOS
-    AOS.init({ duration: 900, once: true, offset: 100, easing: 'ease-out-back' });
+    if (window.AOS) AOS.init({ duration: 900, once: true, offset: 100, easing: 'ease-out-back' });
 
     // ─── Соціальна шторка ───
     let drawerOpen = false;
@@ -1162,26 +1169,6 @@
         const y = (window.innerHeight - e.pageY * speed) / 150;
         shape.style.transform = `translate(${x}px, ${y}px) rotate(${x / 2}deg)`;
       });
-    });
-
-    // ─── Падаючі предмети ───
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.falling-items img').forEach((item) => {
-        item.style.left             = Math.random() * 100 + '%';
-        item.style.width            = (60 + Math.random() * 40) + 'px';
-        item.style.animationDelay   = Math.random() * 10 + 's';
-        item.style.animationDuration = (12 + Math.random() * 10) + 's';
-        item.style.opacity          = (0.15 + Math.random() * 0.25).toString();
-      });
-
-      // ─── Орбіта ───
-      const steps = document.querySelectorAll('.orbit-step');
-      let idx = 0;
-      setInterval(() => {
-        steps.forEach(s => s.classList.remove('active'));
-        if (steps[idx]) steps[idx].classList.add('active');
-        idx = (idx + 1) % steps.length;
-      }, 2500);
     });
 
     // ─── FAQ акордеон ───
@@ -1293,62 +1280,14 @@
         updateActiveNav();
       }
 
-      // Premium custom cursor — desktop/fine pointer only
-      const finePointer = window.matchMedia('(pointer: fine)').matches;
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const dot = document.getElementById('cursorDot');
-      const ring = document.getElementById('cursorRing');
-
-      if (finePointer && !reducedMotion && dot && ring) {
-        let mouseX = -100;
-        let mouseY = -100;
-        let ringX = -100;
-        let ringY = -100;
-
-        document.documentElement.classList.add('has-custom-cursor');
-
-        window.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-        }, { passive: true });
-
-        const animateCursor = () => {
-          ringX += (mouseX - ringX) * 0.15;
-          ringY += (mouseY - ringY) * 0.15;
-          ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-          requestAnimationFrame(animateCursor);
-        };
-        animateCursor();
-
-        const interactive = document.querySelectorAll(
-          'a, button, .work-card, .showcase-card, .card, .service-card, .partner-card, .faq-question'
-        );
-
-        interactive.forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            ring.classList.add('is-hovering');
-            if (el.matches('.work-card, .showcase-card, .card')) {
-              ring.classList.add('is-view');
-            }
-          });
-          el.addEventListener('mouseleave', () => {
-            ring.classList.remove('is-hovering', 'is-view');
-          });
-        });
-
-        document.addEventListener('mouseleave', () => {
-          dot.classList.add('is-hidden');
-          ring.classList.add('is-hidden');
-        });
-        document.addEventListener('mouseenter', () => {
-          dot.classList.remove('is-hidden');
-          ring.classList.remove('is-hidden');
-        });
-      }
     })();
 
   </script>
 
+<dialog id="case-dialog" class="case-dialog" aria-labelledby="case-title">
+  <div class="case-toolbar"><span>INCOLOR / РОБОТИ</span><button type="button" id="case-close" aria-label="Закрити кейс">×</button></div>
+  <div class="case-layout"><img id="case-image" alt=""><div class="case-copy"><span class="section-kicker" id="case-category"></span><h2 id="case-title"></h2><p id="case-description"></p><div class="case-note"><span>ІДЕЯ ДЛЯ ТВОГО ПРОЄКТУ</span><p id="case-idea"></p></div><button type="button" class="details-cta" id="case-order">Хочу щось подібне <span>↗</span></button></div></div>
+</dialog>
+<script src="details.js"></script>
 </body>
 </html>
