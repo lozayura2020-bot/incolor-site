@@ -3,7 +3,7 @@
   const $ = id => document.getElementById(id);
   // Add your real print-process video here, e.g. 'videos/incolor-print.mp4'.
   // With no video the section shows an existing close-up photo without a fake play button.
-  const PROCESS_VIDEO = 'videos/incolor-print.mp4';
+  const PROCESS_VIDEO = '';
   const audiences = {
     self:{title:'Те, що хочеться носити.',eyebrow:'НЕХАЙ РЕЧІ ГОВОРЯТЬ ЗА ТЕБЕ',description:'Улюблене місто, власна ілюстрація або напис зі змістом. Допоможемо перенести твою ідею на одяг чи аксесуари.',image:'images/portfolio-city-enhanced.webp',alt:'Світшот з принтом Харків',tag:'ТВОЯ ІДЕЯ / ТВОЯ РІЧ',chips:['Футболки','Худі','Кружки'],cta:'Обговорити мою ідею',draft:'Хочу персональний принт. Моя ідея: '},
     team:{title:'Різні люди. Спільний стиль.',eyebrow:'ДЛЯ ТИХ, ХТО РОБИТЬ РАЗОМ',description:'Одяг для спортивної спільноти, творчого колективу або команди події. Зберемо спільну візуальну ідею та підберемо вироби під вашу задачу.',image:'images/portfolio-skate-enhanced.webp',alt:'Командний одяг із принтом',tag:'ВАША КОМАНДА / ВАШ СТИЛЬ',chips:['Командні футболки','Худі','Одяг для подій'],cta:'Обговорити мерч для команди',draft:'Потрібен мерч для команди. Кількість людей та ідея: '},
@@ -51,7 +51,7 @@
   $('process-open').addEventListener('click',()=>openCase(3,$('process-open')));
   if(PROCESS_VIDEO){
     const video=$('process-video');video.src=PROCESS_VIDEO;video.hidden=false;$('process-poster').hidden=true;$('process-open').hidden=true;
-    $('process-title').textContent='Результат у русі.';$('process-description').textContent='Кепки та брендовані речі FRIPS. Роздивись готовий мерч і деталі принта у відео.';
+    $('process-title').textContent='Як народжується принт.';$('process-description').textContent='Зазирни у процес друку InColor: від нанесення до готової речі.';
     $('process-caption').hidden=true;
     video.addEventListener('error',()=>{video.hidden=true;$('process-poster').hidden=false;$('process-open').hidden=false;$('process-title').textContent='Вся увага — до деталей.';$('process-description').textContent='Роздивись приклад друку на тканині зблизька.';$('process-caption').hidden=false;});
   }
