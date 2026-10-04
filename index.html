@@ -1036,7 +1036,7 @@
           <input type="tel" name="phone" placeholder="Ваш номер телефону" required>
         </div>
         <div class="form-group" data-aos="fade-left" data-aos-delay="500">
-          <input type="email" name="email" placeholder="Ваш Email" required>
+          <input type="email" name="email" placeholder="Ваш Email (необов’язково)" aria-label="Email (необов’язково)">
         </div>
         <div class="form-group" data-aos="fade-up" data-aos-delay="600">
           <textarea name="message" placeholder="Ваше повідомлення" rows="4" required></textarea>
@@ -1196,7 +1196,7 @@
       submit.disabled = true;
       formStatus.hidden = true;
 
-      const msg = `📩 *Нова заявка з сайту InColor:*\n👤 Ім'я: ${data.get('name')}\n📞 Телефон: ${data.get('phone')}\n📧 Email: ${data.get('email')}\n💬 Повідомлення: ${data.get('message')}`;
+      const msg = `📩 *Нова заявка з сайту InColor:*\n👤 Ім'я: ${data.get('name')}\n📞 Телефон: ${data.get('phone')}\n📧 Email: ${data.get('email') || 'Не вказано'}\n💬 Повідомлення: ${data.get('message')}`;
 
       try {
         // Відправляємо в Telegram
