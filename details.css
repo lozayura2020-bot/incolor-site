@@ -36,3 +36,12 @@
  .hero .hero-mobile-showcase::before,.hero .hero-mobile-showcase::after{content:none!important}
  .hero-mobile-showcase .mobile-hero-composition{display:block;position:static;width:100%;height:auto;max-width:none;object-fit:contain;filter:none;animation:none;transform:none}
 }
+
+/* Gentle mobile hero sway */
+@keyframes incolor-hero-sway{
+  0%,100%{transform:translateY(0) rotate(-.65deg)}
+  50%{transform:translateY(-4px) rotate(.65deg)}
+}
+@media(max-width:640px) and (prefers-reduced-motion:no-preference){
+ .hero .hero-mobile-showcase{transform-origin:50% 70%;animation:incolor-hero-sway 6s ease-in-out infinite}
+}
