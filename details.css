@@ -30,18 +30,33 @@
  .about-flow-visual .product-price-label{bottom:18px;right:18px}
 }
 
-/* Approved mobile product composition */
-@media(max-width:640px){
- .hero .hero-mobile-showcase{height:auto!important;aspect-ratio:4/3;background:transparent;border:0;overflow:hidden;box-shadow:none}
- .hero .hero-mobile-showcase::before,.hero .hero-mobile-showcase::after{content:none!important}
- .hero-mobile-showcase .mobile-hero-composition{display:block;position:static;width:100%;height:auto;max-width:none;object-fit:contain;filter:none;animation:none;transform:none}
+/* Independent product motion; frame, tags and prices stay still. */
+@keyframes incolor-product-sway{
+ 0%,100%{transform:translateY(0) rotate(-1.5deg)}
+ 50%{transform:translateY(-5px) rotate(1.5deg)}
 }
-
-/* Gentle mobile hero sway */
-@keyframes incolor-hero-sway{
-  0%,100%{transform:translateY(0) rotate(-.65deg)}
-  50%{transform:translateY(-4px) rotate(.65deg)}
+@media(max-width:640px){
+ .hero .hero-mobile-showcase{height:auto!important;aspect-ratio:4/3;background:transparent;border:0;overflow:visible;box-shadow:none;animation:none!important;transform:none!important}
+ .hero .hero-mobile-showcase::before,.hero .hero-mobile-showcase::after{content:none!important}
+ .mobile-product-stage{position:relative;width:100%;height:100%;aspect-ratio:4/3;border:1px solid white;border-radius:28px;background:radial-gradient(ellipse at 50% 40%,#f6fcff 0%,#dcf3ff 65%,#cceeff 100%);isolation:isolate}
+ .mobile-product-stage::before{content:"";position:absolute;inset:16% 10% 27%;border:1px solid #a5def7;border-radius:50%;transform:rotate(-10deg);z-index:-1}
+ .mobile-product-brand{position:absolute;top:28%;left:1%;width:98%;text-align:center;font-size:clamp(45px,15vw,80px);font-weight:900;letter-spacing:-.04em;color:#1684c61a;z-index:-1}
+ .mobile-product-tags{position:absolute;top:5%;left:5%;right:5%;display:flex;justify-content:space-between;gap:8px}
+ .mobile-product-tags span{padding:8px 12px;background:#ffffffd9;border-radius:30px;color:#083d66;font-size:10px;font-weight:800;letter-spacing:.04em}
+ .mobile-product-item{position:absolute;transform-origin:50% 35%;z-index:1}
+ .mobile-product-item svg{display:block;width:100%;height:100%;overflow:hidden}
+ .mobile-product-hoodie{left:1%;top:24%;width:35%;height:53%}
+ .mobile-product-shirt{left:31%;top:18%;width:42%;height:60%;z-index:2}
+ .mobile-product-mug{right:1%;top:29%;width:28%;height:48%}
+ .mobile-product-prices{position:absolute;left:4%;right:4%;bottom:4%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;z-index:3}
+ .mobile-product-prices .product-price-label{position:static;max-width:none;min-width:0;gap:7px;padding:8px 6px;border-radius:17px;justify-content:center}
+ .mobile-product-prices .product-price-label::before{width:7px;height:7px;flex-basis:7px;box-shadow:none}
+ .mobile-product-prices .product-price-label strong{font-size:clamp(15px,4.6vw,20px)}
+ .mobile-product-prices .product-price-label small{font-size:10px;margin-top:2px}
+ .hero-product-name{display:block;font-size:10px;line-height:1.3;color:#083d66;margin-bottom:2px}
 }
 @media(max-width:640px) and (prefers-reduced-motion:no-preference){
- .hero .hero-mobile-showcase{transform-origin:50% 70%;animation:incolor-hero-sway 6s ease-in-out infinite}
+ .mobile-product-hoodie{animation:incolor-product-sway 5.8s ease-in-out infinite}
+ .mobile-product-shirt{animation:incolor-product-sway 6.7s ease-in-out -2.3s infinite}
+ .mobile-product-mug{animation:incolor-product-sway 5.2s ease-in-out -1.4s infinite}
 }

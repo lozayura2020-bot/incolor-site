@@ -89,16 +89,28 @@
   });
 })();
 
-/* Approved mobile product composition. */
+/* Independently animated mobile products with stationary labels. */
 (() => {
-  const hero = document.querySelector('.hero-mobile-showcase');
-  if (!hero) return;
-  const image = document.createElement('img');
-  image.className = 'mobile-hero-composition';
-  image.src = 'images/hero-products-priced.webp';
-  image.alt = 'Худі з горами — 1 500 ₴, футболка з квітами — 550 ₴, чашка з котиком — 180 ₴. Ціни з друком.';
-  image.width = 1448;
-  image.height = 1086;
-  image.decoding = 'async';
-  hero.replaceChildren(image);
+ const hero=document.querySelector('.hero-mobile-showcase');
+ if(!hero)return;
+ const stage=document.createElement('div');stage.className='mobile-product-stage';
+ const tags=document.createElement('div');tags.className='mobile-product-tags';
+ ['ВЛАСНИЙ ДИЗАЙН','ВІД 1 ШТ.'].forEach(text=>{const tag=document.createElement('span');tag.textContent=text;tags.append(tag)});
+ const brand=document.createElement('span');brand.className='mobile-product-brand';brand.textContent='INCOLOR';brand.setAttribute('aria-hidden','true');
+ const prices=document.createElement('div');prices.className='mobile-product-prices';
+ [['hoodie','Худі','1 500',0,710],['shirt','Футболка','550',710,710],['mug','Чашка','180',1420,628]].forEach(([kind,name,price,x,width])=>{
+  const item=document.createElement('div');item.className='mobile-product-item mobile-product-'+kind;
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox',x+' 0 '+width+' 768');svg.setAttribute('role','img');svg.setAttribute('aria-label',name+' з принтом');
+  const image=document.createElementNS('http://www.w3.org/2000/svg','image');
+  image.setAttribute('href','images/hero-products-sprite.webp');image.setAttribute('width','2048');image.setAttribute('height','768');
+  svg.append(image);item.append(svg);stage.append(item);
+  const label=document.createElement('div');label.className='product-price-label';
+  const text=document.createElement('div');
+  const title=document.createElement('span');title.className='hero-product-name';title.textContent=name;
+  const amount=document.createElement('strong');amount.textContent=price+' ₴';
+  const note=document.createElement('small');note.textContent='з друком';
+  text.append(title,amount,note);label.append(text);prices.append(label);
+ });
+ stage.append(brand,tags,prices);hero.replaceChildren(stage);
 })();
