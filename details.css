@@ -29,3 +29,19 @@
  .work-card .product-price-label{top:64px}
  .about-flow-visual .product-price-label{bottom:18px;right:18px}
 }
+
+/* Mobile hero: real product photos and prices under each product */
+.mobile-hero-prices{display:none}
+@media(max-width:640px){
+ .hero-mobile-showcase{height:330px}
+ .hero-mobile-showcase .mobile-merch{content:none!important;animation:none}
+ .hero-mobile-showcase .mobile-merch-shirt{width:48%;height:185px;bottom:83px;left:50%;transform:translateX(-50%) rotate(-2deg)}
+ .hero-mobile-showcase .mobile-merch-bag{width:37%;height:163px;left:0;bottom:86px;transform:rotate(-9deg)}
+ .hero-mobile-showcase .mobile-merch-cup{width:30%;height:120px;right:0;bottom:91px;transform:rotate(8deg)}
+ .mobile-hero-prices{position:absolute;left:12px;right:12px;bottom:13px;z-index:7;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .mobile-hero-prices .product-price-label{position:relative;inset:auto;max-width:none;min-width:0;gap:7px;padding:9px 7px;border-radius:16px;justify-content:center}
+ .mobile-hero-prices .product-price-label::before{width:7px;height:7px;flex-basis:7px;box-shadow:0 0 0 4px rgba(45,174,230,.12)}
+ .mobile-hero-prices .product-price-label strong{font-size:16px}
+ .mobile-hero-prices .product-price-label small{font-size:11px;margin-top:2px}
+ .mobile-hero-prices .hero-product-name{display:block;font-size:11px;line-height:1.3;color:#526e83;margin-bottom:2px}
+}
