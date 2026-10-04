@@ -89,31 +89,16 @@
   });
 })();
 
-/* Replace the mobile bag with a hoodie and use existing real-print photos. */
+/* Approved mobile product composition. */
 (() => {
   const hero = document.querySelector('.hero-mobile-showcase');
   if (!hero) return;
-  [
-    ['.mobile-merch-shirt', 'images/item-shirt.png', 'Футболка з індивідуальним принтом'],
-    ['.mobile-merch-bag', 'images/item-hoodie.png', 'Худі з принтом'],
-    ['.mobile-merch-cup', 'images/item-cup.png', 'Чашки з фотопринтом']
-  ].forEach(([selector, src, alt]) => {
-    const image = hero.querySelector(selector);
-    if (image) { image.src = src; image.alt = alt; }
-  });
-  if (hero.querySelector('.mobile-hero-prices')) return;
-  const prices = document.createElement('div');
-  prices.className = 'mobile-hero-prices';
-  [['Худі', '1 500'], ['Футболка', '550'], ['Чашка', '180']].forEach(([name, price]) => {
-    const label = document.createElement('div');
-    label.className = 'product-price-label';
-    label.setAttribute('aria-label', name + ': ' + price + ' гривень з друком');
-    const text = document.createElement('div');
-    const title = document.createElement('span');
-    title.className = 'hero-product-name'; title.textContent = name;
-    const amount = document.createElement('strong'); amount.textContent = price + ' ₴';
-    const note = document.createElement('small'); note.textContent = 'з друком';
-    text.append(title, amount, note); label.append(text); prices.append(label);
-  });
-  hero.append(prices);
+  const image = document.createElement('img');
+  image.className = 'mobile-hero-composition';
+  image.src = 'images/hero-products-priced.webp';
+  image.alt = 'Худі з горами — 1 500 ₴, футболка з квітами — 550 ₴, чашка з котиком — 180 ₴. Ціни з друком.';
+  image.width = 1448;
+  image.height = 1086;
+  image.decoding = 'async';
+  hero.replaceChildren(image);
 })();
