@@ -62,3 +62,43 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){window.closeMobile();burger.focus();}});
   document.querySelectorAll('.faq-question').forEach(q=>{q.tabIndex=0;q.setAttribute('role','button');q.setAttribute('aria-expanded','false');q.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();}});new MutationObserver(()=>q.setAttribute('aria-expanded',q.parentElement.classList.contains('open'))).observe(q.parentElement,{attributes:true,attributeFilter:['class']});});
 })();
+
+/* Price labels: confirmed prices include print. */
+(() => {
+  const products = [
+    ['.about-flow-visual', 'Худі', '1 500', 'з друком'],
+    ['img[src="images/portfolio-cap-mug-enhanced.webp"]', 'Чашка', '180', 'чашка · з друком'],
+    ['img[src="images/showcase-shirt-red.webp"]', 'Футболка', '550', 'з друком'],
+    ['img[src="images/showcase-shirt-black.webp"]', 'Футболка', '550', 'з друком']
+  ];
+  products.forEach(([selector, product, price, caption]) => {
+    const target = document.querySelector(selector);
+    const card = target && (target.matches('.about-flow-visual') ? target : target.closest('article'));
+    if (!card || card.querySelector('.product-price-label')) return;
+    const label = document.createElement('div');
+    label.className = 'product-price-label';
+    label.setAttribute('aria-label', product + ': ' + price + ' гривень з друком');
+    const text = document.createElement('div');
+    const amount = document.createElement('strong');
+    amount.textContent = price + ' ₴';
+    const note = document.createElement('small');
+    note.textContent = caption;
+    text.append(amount, note);
+    label.append(text);
+    card.append(label);
+  });
+})();
+
+/* Approved mobile product composition. */
+(() => {
+  const hero = document.querySelector('.hero-mobile-showcase');
+  if (!hero) return;
+  const image = document.createElement('img');
+  image.className = 'mobile-hero-composition';
+  image.src = 'images/hero-products-priced.webp';
+  image.alt = 'Худі з горами — 1 500 ₴, футболка з квітами — 550 ₴, чашка з котиком — 180 ₴. Ціни з друком.';
+  image.width = 1448;
+  image.height = 1086;
+  image.decoding = 'async';
+  hero.replaceChildren(image);
+})();
