@@ -103,7 +103,13 @@
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.setAttribute('viewBox',x+' 0 '+width+' 768');svg.setAttribute('role','img');svg.setAttribute('aria-label',name+' з принтом');
   const image=document.createElementNS('http://www.w3.org/2000/svg','image');
-  image.setAttribute('href','images/hero-products-sprite.webp');image.setAttribute('width','2048');image.setAttribute('height','768');
+  if(kind==='mug'){
+   image.setAttribute('href','images/hero-products-sprite.webp');image.setAttribute('width','2048');image.setAttribute('height','768');
+  }else{
+   svg.setAttribute('viewBox',kind==='hoodie'?'35 40 840 840':'960 125 800 750');
+   image.setAttribute('href','images/hero-apparel-custom.webp');image.setAttribute('width','1774');image.setAttribute('height','887');
+   svg.setAttribute('aria-label',kind==='hoodie'?'Худі з кольоровим принтом SCHWIFTY':'Біла футболка з клоуном і написом «ХОРОШ, АЛЕ НЕ КРАЩИЙ»');
+  }
   svg.append(image);item.append(svg);stage.append(item);
   const label=document.createElement('div');label.className='product-price-label';
   const text=document.createElement('div');
