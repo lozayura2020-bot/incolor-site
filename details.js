@@ -104,7 +104,9 @@
   svg.setAttribute('viewBox',x+' 0 '+width+' 768');svg.setAttribute('role','img');svg.setAttribute('aria-label',name+' з принтом');
   const image=document.createElementNS('http://www.w3.org/2000/svg','image');
   if(kind==='mug'){
-   image.setAttribute('href','images/hero-products-sprite.webp');image.setAttribute('width','2048');image.setAttribute('height','768');
+   svg.setAttribute('viewBox','-60 -320 760 920');
+   svg.setAttribute('aria-label','Чашка з принтом «Обухів»');
+   image.setAttribute('href','images/hero-mug-obukhiv.webp');image.setAttribute('width','600');image.setAttribute('height','600');
   }else{
    svg.setAttribute('viewBox',kind==='hoodie'?'35 40 840 840':'960 125 800 750');
    image.setAttribute('href','images/hero-apparel-custom.webp');image.setAttribute('width','1774');image.setAttribute('height','887');
