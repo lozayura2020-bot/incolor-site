@@ -398,6 +398,16 @@
     .form-status[hidden] { display: none; }
     .form-status[data-state="success"] { color: #14624c; background: #e5f7ef; }
     .form-status[data-state="error"] { color: #8d3030; background: #fff0f0; }
+    .contact-phones { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; max-width:760px; margin:24px auto; }
+    .contact-phone { display:flex; flex-direction:column; gap:8px; padding:22px; border:1px solid #b7e3f7; border-radius:20px; background:#f0faff; color:#083d66; text-decoration:none; text-align:left; }
+    .contact-phone-manager { background:#dff4ff; border-color:#65c8ee; }
+    .contact-phone span { font-size:13px; line-height:1.5; }
+    .contact-phone strong { font-size:clamp(18px,2.4vw,24px); white-space:nowrap; }
+    .contact-phone small { color:#0875a5; font-size:13px; font-weight:700; }
+    .contact-phone:hover { background:#cdeeff; }
+    .contact-phone:focus-visible { outline:3px solid #0875a5; outline-offset:3px; }
+    #socialDrawer { max-height:calc(100dvh - 100px); overflow-y:auto; }
+    @media(max-width:640px) { .contact-phones { grid-template-columns:1fr; } }
     #contactForm button:disabled { cursor: wait; opacity: .65; }
   </style>
 </head>
@@ -1023,6 +1033,18 @@
       <h2 data-aos="fade-down" data-aos-delay="100">Розкажи, що<br>хочеш зробити.</h2>
       <p data-aos="fade-up" data-aos-delay="200">Коротко опиши ідею, тираж або виріб — решту допоможемо зібрати разом.</p>
 
+      <div class="contact-phones">
+        <a href="tel:+380752181854" class="contact-phone contact-phone-manager">
+          <span>Менеджер · замовлення та консультації</span>
+          <strong>+380 75 218 18 54</strong>
+          <small>Зателефонувати ↗</small>
+        </a>
+        <a href="tel:+380688104688" class="contact-phone">
+          <span>Студія InColor</span>
+          <strong>+380 68 810 46 88</strong>
+          <small>Зателефонувати ↗</small>
+        </a>
+      </div>
       <form id="contactForm"
             action="https://formspree.io/f/xovkwrnb"
             method="POST"
@@ -1057,7 +1079,8 @@
 
     <div class="footer-links">
       <a href="mailto:incolor.ra@gmail.com">incolor.ra@gmail.com</a>
-      <a href="tel:+380950173045">095 017 30 45</a>
+      <a href="tel:+380688104688">+380 68 810 46 88 · Студія</a>
+      <a href="tel:+380752181854">+380 75 218 18 54 · Менеджер</a>
       <a href="https://www.instagram.com/inco_tshrt/" target="_blank">Instagram</a>
       <a href="https://t.me/Incolor_manager" target="_blank">Telegram</a>
     </div>
@@ -1067,15 +1090,21 @@
 
   <!-- ═══ СОЦІАЛЬНА ШТОРКА ═══ -->
   <div class="social-trigger-wrap" id="socialTriggerWrap">
-    <button class="social-tab" id="socialTabBtn" onclick="toggleDrawer()" aria-label="Соцмережі">
+    <button class="social-tab" id="socialTabBtn" onclick="toggleDrawer()" aria-label="Зв’язок зі студією">
       <span class="social-tab-label">Зв'язок</span>
       <svg class="social-tab-arrow" viewBox="0 0 16 16"><polyline points="10,3 5,8 10,13"/></svg>
     </button>
   </div>
 
   <div class="social-drawer" id="socialDrawer">
-    <div class="drawer-heading">Ми в соцмережах</div>
+    <div class="drawer-heading">Зв’язатися з нами</div>
     <div class="drawer-links">
+      <a href="tel:+380752181854" class="drawer-link">
+        <div class="drawer-link-info">
+          <span class="drawer-link-name">Зателефонувати менеджеру</span>
+          <span class="drawer-link-handle">+380 75 218 18 54</span>
+        </div>
+      </a>
 
       <a href="https://www.instagram.com/inco_tshrt/" target="_blank" class="drawer-link instagram">
         <div class="drawer-link-icon">
@@ -1104,7 +1133,7 @@
         </div>
       </a>
 
-      <a href="viber://chat?number=%2B380950173045" target="_blank" class="drawer-link viber">
+      <a href="viber://chat?number=%2B380688104688" target="_blank" class="drawer-link viber">
         <div class="drawer-link-icon">
           <svg viewBox="0 0 24 24">
             <path d="M18 2H6a4 4 0 0 0-4 4v12a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4z"/>
@@ -1113,7 +1142,7 @@
         </div>
         <div class="drawer-link-info">
           <span class="drawer-link-name">Viber</span>
-          <span class="drawer-link-handle">095 017 30 45</span>
+          <span class="drawer-link-handle">+380 68 810 46 88</span>
         </div>
       </a>
 
@@ -1291,3 +1320,4 @@
 <script src="details.js"></script>
 </body>
 </html>
+
